@@ -1,0 +1,34 @@
+{
+  "specifications": [
+    {
+      "id": "algebra-basic",
+      "version": "1.0.0",
+      "status": "draft",
+      "title": "Basic Algebra Assessment",
+      "subject": "Basic Algebra",
+      "learningObjective": "Solve single-variable linear equations",
+      "questionRules": {
+        "totalQuestions": 5,
+        "questionType": "multiple-choice",
+        "optionsPerQuestion": 4
+      },
+      "difficultyDistribution": {
+        "easy": 2,
+        "medium": 2,
+        "hard": 1,
+        "totalQuestions": 5
+      },
+      "scoringRules": {
+        "pointsPerQuestion": 2,
+        "totalPoints": 10
+      },
+      "approval": {
+        "required": true,
+        "approvedBy": null,
+        "approvedAt": null
+      },
+      "createdAt": "2026-08-12T05:54:42.202537+00:00",
+      "updatedAt": "2026-08-12T05:54:42.202537+00:00"
+    }
+  ]
+}

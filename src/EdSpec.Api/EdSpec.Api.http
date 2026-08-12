@@ -4,3 +4,72 @@ GET {{EdSpec.Api_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+POST {{EdSpec.Api_HostAddress}}/api/specifications/drafts
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": "algebra-basic",
+  "version": "1.0.0",
+  "title": "Basic Algebra Assessment",
+  "subject": "Basic Algebra",
+  "learningObjective": "Solve single-variable linear equations",
+  "questionRules": {
+    "totalQuestions": 5,
+    "questionType": "multiple-choice",
+    "optionsPerQuestion": 4
+  },
+  "difficultyDistribution": {
+    "easy": 2,
+    "medium": 2,
+    "hard": 1
+  },
+  "scoringRules": {
+    "pointsPerQuestion": 2,
+    "totalPoints": 10
+  }
+}
+
+###
+
+GET {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0
+Accept: application/json
+
+###
+
+PUT {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0
+Content-Type: application/json
+Accept: application/json
+
+{
+  "title": "Basic Algebra Assessment",
+  "subject": "Basic Algebra",
+  "learningObjective": "Solve single-variable linear equations",
+  "questionRules": {
+    "totalQuestions": 5,
+    "questionType": "multiple-choice",
+    "optionsPerQuestion": 4
+  },
+  "difficultyDistribution": {
+    "easy": 1,
+    "medium": 3,
+    "hard": 1
+  },
+  "scoringRules": {
+    "pointsPerQuestion": 2,
+    "totalPoints": 10
+  }
+}
+
+###
+
+POST {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0/approve
+Content-Type: application/json
+Accept: application/json
+
+{
+  "approvedBy": "POC Reviewer"
+}
+
+###

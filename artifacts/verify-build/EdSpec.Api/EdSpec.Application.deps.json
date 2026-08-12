@@ -1,0 +1,39 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "EdSpec.Application/1.0.0": {
+        "dependencies": {
+          "EdSpec.Domain": "1.0.0"
+        },
+        "runtime": {
+          "EdSpec.Application.dll": {}
+        }
+      },
+      "EdSpec.Domain/1.0.0": {
+        "runtime": {
+          "EdSpec.Domain.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "EdSpec.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "EdSpec.Domain/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
