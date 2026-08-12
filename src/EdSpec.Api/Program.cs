@@ -1,5 +1,9 @@
+using EdSpec.Agents.Assessments;
+using EdSpec.Application.Assessments;
 using EdSpec.Application.Specifications;
+using EdSpec.Infrastructure.Assessments;
 using EdSpec.Infrastructure.Specifications;
+using EdSpec.Validation.Assessments;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddSingleton<ISpecificationDraftRepository>(_ =>
     new JsonSpecificationDraftRepository(builder.Environment.ContentRootPath));
+builder.Services.AddSingleton<IGeneratedAssessmentRepository>(_ =>
+    new JsonGeneratedAssessmentRepository(builder.Environment.ContentRootPath));
+builder.Services.AddSingleton<GeneratedAssessmentValidator>();
+builder.Services.AddHttpClient<IAssessmentGenerationAgent, AzureOpenAIAssessmentGenerationAgent>();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

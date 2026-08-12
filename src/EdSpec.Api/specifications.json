@@ -3,7 +3,7 @@
     {
       "id": "algebra-basic",
       "version": "1.0.0",
-      "status": "draft",
+      "status": "approved",
       "title": "Basic Algebra Assessment",
       "subject": "Basic Algebra",
       "learningObjective": "Solve single-variable linear equations",
@@ -24,11 +24,11 @@
       },
       "approval": {
         "required": true,
-        "approvedBy": null,
-        "approvedAt": null
+        "approvedBy": "string",
+        "approvedAt": "2026-08-12T07:26:39.9489973+00:00"
       },
       "createdAt": "2026-08-12T05:54:42.202537+00:00",
-      "updatedAt": "2026-08-12T05:54:42.202537+00:00"
+      "updatedAt": "2026-08-12T07:26:39.9489973+00:00"
     }
   ]
 }

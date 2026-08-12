@@ -1,0 +1,149 @@
+{
+  "assessments": [
+    {
+      "id": "assessment-ff133b09944b4381b74a110aa531c44d",
+      "specificationId": "algebra-basic",
+      "specificationVersion": "1.0.0",
+      "status": "generated",
+      "questions": [
+        {
+          "id": "q1",
+          "learningObjective": "Solve single-variable linear equations",
+          "difficulty": "easy",
+          "questionType": "multiple-choice",
+          "prompt": "Solve for x: 2x \u002B 3 = 11.",
+          "options": [
+            {
+              "id": "A",
+              "text": "4"
+            },
+            {
+              "id": "B",
+              "text": "5"
+            },
+            {
+              "id": "C",
+              "text": "2"
+            },
+            {
+              "id": "D",
+              "text": "-4"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q2",
+          "learningObjective": "Solve single-variable linear equations",
+          "difficulty": "easy",
+          "questionType": "multiple-choice",
+          "prompt": "Solve for x: 5x - 10 = 0.",
+          "options": [
+            {
+              "id": "A",
+              "text": "0"
+            },
+            {
+              "id": "B",
+              "text": "2"
+            },
+            {
+              "id": "C",
+              "text": "-2"
+            },
+            {
+              "id": "D",
+              "text": "10"
+            }
+          ],
+          "correctOptionId": "B",
+          "points": 2
+        },
+        {
+          "id": "q3",
+          "learningObjective": "Solve single-variable linear equations",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "Solve for x: (x / 3) \u002B 4 = 9.",
+          "options": [
+            {
+              "id": "A",
+              "text": "15"
+            },
+            {
+              "id": "B",
+              "text": "5"
+            },
+            {
+              "id": "C",
+              "text": "12"
+            },
+            {
+              "id": "D",
+              "text": "9"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q4",
+          "learningObjective": "Solve single-variable linear equations",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "Solve for x: 4(x - 2) = 3x \u002B 6.",
+          "options": [
+            {
+              "id": "A",
+              "text": "2"
+            },
+            {
+              "id": "B",
+              "text": "14"
+            },
+            {
+              "id": "C",
+              "text": "-14"
+            },
+            {
+              "id": "D",
+              "text": "10"
+            }
+          ],
+          "correctOptionId": "B",
+          "points": 2
+        },
+        {
+          "id": "q5",
+          "learningObjective": "Solve single-variable linear equations",
+          "difficulty": "hard",
+          "questionType": "multiple-choice",
+          "prompt": "Solve for x: (3/4)x - (1/2)(x \u002B 2) = 5.",
+          "options": [
+            {
+              "id": "A",
+              "text": "12"
+            },
+            {
+              "id": "B",
+              "text": "24"
+            },
+            {
+              "id": "C",
+              "text": "18"
+            },
+            {
+              "id": "D",
+              "text": "-24"
+            }
+          ],
+          "correctOptionId": "B",
+          "points": 2
+        }
+      ],
+      "createdBy": "POC User",
+      "createdAt": "2026-08-12T10:41:23.387831+00:00"
+    }
+  ]
+}

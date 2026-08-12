@@ -73,3 +73,13 @@ Accept: application/json
 }
 
 ###
+
+POST {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0/assessments/generate
+Content-Type: application/json
+Accept: application/json
+
+{
+  "requestedBy": "POC User"
+}
+
+###
