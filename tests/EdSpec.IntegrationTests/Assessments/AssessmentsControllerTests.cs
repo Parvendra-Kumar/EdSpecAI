@@ -1,7 +1,9 @@
 using EdSpec.Api.Controllers;
 using EdSpec.Application.Assessments;
+using EdSpec.Application.Audit;
 using EdSpec.Application.Specifications;
 using EdSpec.Domain.Assessments;
+using EdSpec.Domain.Audit;
 using EdSpec.Domain.Specifications;
 using EdSpec.Validation.Assessments;
 using Microsoft.AspNetCore.Mvc;
@@ -51,10 +53,11 @@ public sealed class AssessmentsControllerTests
             CancellationToken.None);
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
-        var assessment = Assert.IsType<GeneratedAssessment>(okResult.Value);
-        Assert.Equal("algebra-basic", assessment.SpecificationId);
-        Assert.Equal("1.0.0", assessment.SpecificationVersion);
-        Assert.Equal("generated", assessment.Status);
+        var response = Assert.IsType<GenerateAssessmentResponse>(okResult.Value);
+        Assert.Equal("algebra-basic", response.Assessment.SpecificationId);
+        Assert.Equal("1.0.0", response.Assessment.SpecificationVersion);
+        Assert.Equal("generated", response.Assessment.Status);
+        Assert.Equal("passed", response.Review.Status);
         Assert.Single(repository.Assessments);
     }
 
@@ -62,10 +65,14 @@ public sealed class AssessmentsControllerTests
         SpecificationDraft? specification,
         FakeGeneratedAssessmentRepository? assessmentRepository = null)
     {
+        var auditRepository = new FakeAuditLogRepository();
         return new AssessmentsController(
             new FakeSpecificationDraftRepository(specification),
             assessmentRepository ?? new FakeGeneratedAssessmentRepository(),
+            new FakeAssessmentReviewRepository(),
+            auditRepository,
             new FakeAssessmentGenerationAgent(),
+            new FakeAssessmentReviewAgent(),
             new GeneratedAssessmentValidator());
     }
 
@@ -121,6 +128,22 @@ public sealed class AssessmentsControllerTests
         }
     }
 
+    private sealed class FakeAssessmentReviewRepository : IAssessmentReviewRepository
+    {
+        public Task<AssessmentReview> CreateAsync(AssessmentReview review, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(review);
+        }
+    }
+
+    private sealed class FakeAuditLogRepository : IAuditLogRepository
+    {
+        public Task<AuditLogEntry> CreateAsync(AuditLogEntry entry, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(entry);
+        }
+    }
+
     private sealed class FakeAssessmentGenerationAgent : IAssessmentGenerationAgent
     {
         public Task<AssessmentGenerationAgentResult> GenerateAsync(SpecificationDraft specification, CancellationToken cancellationToken)
@@ -144,6 +167,25 @@ public sealed class AssessmentsControllerTests
             ];
 
             return Task.FromResult(new AssessmentGenerationAgentResult(questions));
+        }
+    }
+
+    private sealed class FakeAssessmentReviewAgent : IAssessmentReviewAgent
+    {
+        public Task<AssessmentReview> ReviewAsync(
+            SpecificationDraft specification,
+            GeneratedAssessment assessment,
+            CancellationToken cancellationToken)
+        {
+            return Task.FromResult(new AssessmentReview(
+                "review-1",
+                assessment.Id,
+                specification.Id,
+                specification.Version,
+                "passed",
+                [],
+                0.95m,
+                DateTimeOffset.UtcNow));
         }
     }
 }
