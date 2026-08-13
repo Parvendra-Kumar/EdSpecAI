@@ -1,15 +1,63 @@
+import { useState, type ReactNode } from 'react'
+
+type Tab = 'overview' | 'specification' | 'assessment' | 'review' | 'audit'
+
+const questions = [
+  { id: 'Q1', text: 'Solve for x: 2x + 4 = 10', topic: 'Linear equations', difficulty: 'Easy', answer: 'B. 3', options: ['A. 2', 'B. 3', 'C. 4', 'D. 5'], score: 2 },
+  { id: 'Q2', text: 'Which equation has x = 5 as its solution?', topic: 'One-variable equations', difficulty: 'Easy', answer: 'A. x + 2 = 7', options: ['A. x + 2 = 7', 'B. 2x = 12', 'C. x - 5 = 2', 'D. 3x = 20'], score: 2 },
+  { id: 'Q3', text: 'Solve for x: 3x - 7 = 14', topic: 'Linear equations', difficulty: 'Medium', answer: 'C. 7', options: ['A. 5', 'B. 6', 'C. 7', 'D. 8'], score: 2 },
+]
+
+function Icon({ children }: { children: string }) { return <span className="icon" aria-hidden="true">{children}</span> }
+
 function App() {
-  return (
-    <main className="shell">
-      <p className="eyebrow">Spec-driven EdTech POC</p>
-      <h1>EdSpec AI</h1>
-      <p>
-        Generate and independently review a Basic Algebra assessment from an
-        approved specification.
-      </p>
+  const [tab, setTab] = useState<Tab>('overview')
+  const [assessmentStatus, setAssessmentStatus] = useState('Needs correction')
+  const [toast, setToast] = useState('')
+  const notify = (message: string) => { setToast(message); window.setTimeout(() => setToast(''), 2600) }
+  const go = (next: Tab) => setTab(next)
+
+  return <div className="app-shell">
+    <aside className="sidebar">
+      <div className="brand"><div className="brand-mark">E</div><div><strong>EdSpec</strong><small>AI REVIEW STUDIO</small></div></div>
+      <div className="workspace-label">WORKSPACE</div>
+      <nav>
+        <button className={tab === 'overview' ? 'active' : ''} onClick={() => go('overview')}><Icon>⌂</Icon>Overview</button>
+        <button className={tab === 'specification' ? 'active' : ''} onClick={() => go('specification')}><Icon>◇</Icon>Specifications <span className="nav-count">3</span></button>
+        <button className={tab === 'assessment' ? 'active' : ''} onClick={() => go('assessment')}><Icon>▤</Icon>Assessments</button>
+        <button className={tab === 'review' ? 'active' : ''} onClick={() => go('review')}><Icon>◉</Icon>Review queue <span className="nav-count warning">2</span></button>
+        <button className={tab === 'audit' ? 'active' : ''} onClick={() => go('audit')}><Icon>◷</Icon>Audit history</button>
+      </nav>
+      <div className="sidebar-bottom"><div className="help-card"><div className="help-icon">?</div><strong>Need a hand?</strong><p>Read the reviewer guide</p></div><div className="profile"><div className="avatar">AK</div><div><strong>Arti Chauhan</strong><small>Reviewer</small></div><span>•••</span></div></div>
+    </aside>
+    <main className="content">
+      <header className="topbar"><div className="crumb">EdSpec workspace <span>/</span> {tab === 'overview' ? 'Overview' : tab[0].toUpperCase() + tab.slice(1)}</div><div className="top-actions"><button className="icon-button">⌕</button><button className="icon-button">♧</button><div className="avatar small">AK</div></div></header>
+      {tab === 'overview' && <Overview go={go} notify={notify} />}
+      {tab === 'specification' && <Specification notify={notify} go={go} />}
+      {tab === 'assessment' && <Assessment status={assessmentStatus} setStatus={setAssessmentStatus} notify={notify} go={go} />}
+      {tab === 'review' && <Review notify={notify} go={go} />}
+      {tab === 'audit' && <Audit />}
     </main>
-  )
+    {toast && <div className="toast">✓ {toast}</div>}
+  </div>
 }
 
-export default App
+function PageTitle({ eyebrow, title, description, action }: { eyebrow: string; title: string; description: string; action?: ReactNode }) { return <div className="page-title"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div>{action}</div> }
+function Status({ children, tone = 'green' }: { children: ReactNode; tone?: string }) { return <span className={`status ${tone}`}><i />{children}</span> }
 
+function Overview({ go, notify }: { go: (x: Tab) => void; notify: (x: string) => void }) { return <>
+  <PageTitle eyebrow="Reviewer workspace" title="Good morning, Arti" description="Here’s what needs your attention today." action={<button className="button primary" onClick={() => go('specification')}>＋ New specification</button>} />
+  <section className="stat-grid"><div className="stat-card"><div className="stat-icon blue">◇</div><div><span>Approved specifications</span><strong>3</strong><small>↑ 1 this month</small></div></div><div className="stat-card"><div className="stat-icon purple">▤</div><div><span>Assessments generated</span><strong>12</strong><small>↑ 18% this month</small></div></div><div className="stat-card"><div className="stat-icon amber">◉</div><div><span>Awaiting review</span><strong>2</strong><small className="attention">Needs your attention</small></div></div></section>
+  <div className="dashboard-grid"><section className="panel recent"><div className="panel-head"><div><h2>Recent activity</h2><p>Your latest specification and assessment work.</p></div><button className="text-button" onClick={() => go('audit')}>View all →</button></div><div className="activity"><div className="timeline-dot green" /><div><strong>Specification approved</strong><p>Basic Algebra · v1.0</p><small>Today, 10:42 AM</small></div><Status>Approved</Status></div><div className="activity"><div className="timeline-dot purple" /><div><strong>Assessment generated</strong><p>Basic Algebra · 5 questions</p><small>Today, 10:36 AM</small></div><Status tone="purple">Generated</Status></div><div className="activity"><div className="timeline-dot amber" /><div><strong>Review findings created</strong><p>3 findings · ALG-ASS-001</p><small>Today, 10:38 AM</small></div><Status tone="amber">Action needed</Status></div></section><section className="panel attention-panel"><div className="panel-head"><div><h2>Needs your attention</h2><p>Items waiting for a decision.</p></div></div><div className="queue-item"><div className="queue-icon amber">!</div><div><strong>Basic Algebra assessment</strong><p>3 findings · 1 high severity</p><small>Generated 6 min ago</small></div><button className="button outline" onClick={() => go('review')}>Review</button></div><div className="queue-item"><div className="queue-icon blue">◇</div><div><strong>Geometry fundamentals</strong><p>Draft specification</p><small>Edited yesterday</small></div><button className="button outline" onClick={() => go('specification')}>Open</button></div></section></div>
+  <section className="panel flow-panel"><div className="panel-head"><div><h2>How EdSpec works</h2><p>Every assessment follows a traceable, human-approved workflow.</p></div></div><div className="flow"><div><b className="flow-number">1</b><strong>Approved spec</strong><span>Define the contract</span></div><em>→</em><div><b className="flow-number purple-bg">2</b><strong>AI generation</strong><span>Create questions</span></div><em>→</em><div><b className="flow-number amber-bg">3</b><strong>Independent review</strong><span>Find semantic issues</span></div><em>→</em><div><b className="flow-number green-bg">4</b><strong>Human approval</strong><span>Release with confidence</span></div></div></section>
+</> }
+
+function Specification({ notify, go }: { notify: (x: string) => void; go: (x: Tab) => void }) { return <><PageTitle eyebrow="Specifications" title="Specification library" description="Manage the versioned contracts that drive assessment generation." action={<button className="button primary" onClick={() => notify('New specification form is ready')}>＋ New specification</button>} /><section className="panel"><div className="toolbar"><div className="search">⌕ <input placeholder="Search specifications" /></div><button className="filter">All statuses⌄</button></div><table><thead><tr><th>SPECIFICATION</th><th>VERSION</th><th>STATUS</th><th>LAST UPDATED</th><th /></tr></thead><tbody><tr><td><strong>Basic Algebra</strong><small>ALGEBRA-BASIC-001</small></td><td>v1.0</td><td><Status>Approved</Status></td><td>Today, 10:42 AM</td><td><button className="row-action" onClick={() => go('specification')}>Open →</button></td></tr><tr><td><strong>Geometry fundamentals</strong><small>GEOMETRY-FOUND-002</small></td><td>v0.3</td><td><Status tone="amber">Draft</Status></td><td>Yesterday</td><td><button className="row-action">Open →</button></td></tr><tr><td><strong>Fractions & ratios</strong><small>FRACTIONS-RATIO-003</small></td><td>v1.2</td><td><Status>Approved</Status></td><td>Aug 08, 2026</td><td><button className="row-action">Open →</button></td></tr></tbody></table></section><section className="panel spec-detail"><div className="detail-header"><div><div className="eyebrow">ALGEBRA-BASIC-001 · v1.0</div><h2>Basic Algebra</h2><p>Approved specification · Last updated today</p></div><Status>Approved</Status></div><div className="detail-fields"><div><span>Objective</span><strong>Solve single-variable linear equations</strong></div><div><span>Question count</span><strong>5 questions</strong></div><div><span>Difficulty</span><strong>2 easy · 2 medium · 1 hard</strong></div><div><span>Question type</span><strong>Multiple choice</strong></div></div><button className="button outline" onClick={() => { notify('Assessment generation started'); go('assessment') }}>Generate assessment →</button></section></> }
+
+function Assessment({ status, setStatus, notify, go }: { status: string; setStatus: (x: string) => void; notify: (x: string) => void; go: (x: Tab) => void }) { return <><PageTitle eyebrow="Assessment · ALG-ASS-001" title="Basic Algebra assessment" description="Generated from ALGEBRA-BASIC-001 · v1.0" action={<Status tone={status === 'Approved' ? 'green' : 'amber'}>{status}</Status>} /><div className="assessment-layout"><section className="panel question-panel"><div className="panel-head"><div><h2>Generated questions</h2><p>3 of 5 questions shown in this prototype</p></div><button className="button outline" onClick={() => go('review')}>View review report →</button></div>{questions.map((q, i) => <div className="question" key={q.id}><div className="question-top"><span className="question-number">0{i + 1}</span><div><strong>{q.text}</strong><div className="chips"><span>{q.topic}</span><span>{q.difficulty}</span></div></div><span className="score">{q.score} pts</span></div><div className="options">{q.options.map(o => <span className={o === q.answer ? 'correct' : ''} key={o}>{o}{o === q.answer && <b>✓</b>}</span>)}</div><div className="explanation"><b>Explanation</b><p>Rearrange the equation to isolate x and verify the result in the original equation.</p></div></div>)}</section><aside className="panel summary"><h2>Assessment summary</h2><div className="summary-total"><strong>10</strong><span>total points</span></div><div className="progress"><span style={{ width: '60%' }} /></div><div className="summary-row"><span>Questions</span><strong>5</strong></div><div className="summary-row"><span>Generated</span><strong>Today, 10:36 AM</strong></div><div className="summary-row"><span>Specification</span><strong>v1.0</strong></div><hr /><button className="button primary full" onClick={() => go('review')}>Review findings</button><button className="button danger full" onClick={() => { setStatus('Approved'); notify('Assessment approved and added to audit history') }}>Approve assessment</button></aside></div></> }
+
+function Review({ notify, go }: { notify: (x: string) => void; go: (x: Tab) => void }) { return <><PageTitle eyebrow="Review report · ALG-ASS-001" title="Review findings" description="Independent AI review and deterministic validation against ALGEBRA-BASIC-001 · v1.0" action={<Status tone="amber">3 findings</Status>} /><div className="review-banner"><div className="banner-icon">!</div><div><strong>This assessment needs correction</strong><p>Resolve the findings below before approving the assessment.</p></div><span className="banner-score">2 <small>high risk</small></span></div><section className="finding-list">{[['HIGH','ANSWER_CORRECTNESS','Question 3 has an incorrect marked answer.','For 3x - 7 = 14, x = 7. The marked answer does not match the calculation.','Correct the marked answer.'],['MEDIUM','TOPIC_MISMATCH','Question 4 does not match the specification topic.','The question tests a quadratic equation, while the specification requires linear equations.','Replace with a linear equation.'],['LOW','DIFFICULTY_MISMATCH','Question 5 may be too difficult for the requested level.','The required distribution includes one hard question; this item is marked medium.','Update the difficulty label.']].map((f, i) => <div className="finding panel" key={f[1]}><div className={`severity ${f[0].toLowerCase()}`}>{f[0]}</div><div className="finding-content"><div className="finding-meta"><span>Q{i + 3}</span><span>{f[1]}</span><span>AI REVIEW AGENT</span></div><h3>{f[2]}</h3><p>{f[3]}</p><div className="recommendation"><b>Recommendation</b><span>{f[4]}</span></div></div><button className="row-action">Open question ↗</button></div>)}</section><div className="review-actions"><button className="button outline" onClick={() => notify('Correction request sent to the assessment workflow')}>↻ Request correction</button><button className="button primary" onClick={() => { notify('Assessment approved successfully'); go('audit') }}>✓ Approve assessment</button></div></> }
+
+function Audit() { return <><PageTitle eyebrow="Audit history" title="Traceable activity" description="A complete record of specification, assessment, review and decision events." /><section className="panel"><table><thead><tr><th>EVENT</th><th>ENTITY</th><th>ACTOR</th><th>TIME</th><th>STATUS</th></tr></thead><tbody><tr><td><strong>Assessment approved</strong><small>Final human decision</small></td><td>ALG-ASS-001</td><td>Arti Chauhan</td><td>Today, 10:52 AM</td><td><Status>Approved</Status></td></tr><tr><td><strong>Review completed</strong><small>3 findings recorded</small></td><td>REV-001</td><td>Review Agent</td><td>Today, 10:38 AM</td><td><Status tone="amber">Findings</Status></td></tr><tr><td><strong>Assessment generated</strong><small>Creation Agent · prompt v1</small></td><td>ALG-ASS-001</td><td>Creation Agent</td><td>Today, 10:36 AM</td><td><Status tone="purple">Generated</Status></td></tr><tr><td><strong>Specification approved</strong><small>Version frozen at v1.0</small></td><td>ALGEBRA-BASIC-001</td><td>Arti Chauhan</td><td>Today, 10:42 AM</td><td><Status>Approved</Status></td></tr></tbody></table></section></> }
+
+export default App
