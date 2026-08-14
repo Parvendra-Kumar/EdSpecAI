@@ -1,6 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
+using EdSpec.Application.Audit;
 using EdSpec.Application.Specifications;
+using EdSpec.Domain.Audit;
 using EdSpec.Domain.Specifications;
 using EdSpec.Infrastructure.Specifications;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +14,12 @@ namespace EdSpec.Api.Controllers;
 public sealed partial class SpecificationsController : ControllerBase
 {
     private readonly ISpecificationDraftRepository _repository;
+    private readonly IAuditLogRepository _auditLogRepository;
 
-    public SpecificationsController(ISpecificationDraftRepository repository)
+    public SpecificationsController(ISpecificationDraftRepository repository, IAuditLogRepository auditLogRepository)
     {
         _repository = repository;
+        _auditLogRepository = auditLogRepository;
     }
 
     [HttpPost("drafts", Name = "CreateDraftSpecification")]
@@ -140,6 +144,16 @@ public sealed partial class SpecificationsController : ControllerBase
         };
 
         var savedDraft = await _repository.UpdateAsync(approvedDraft, cancellationToken);
+        await _auditLogRepository.CreateAsync(
+            new AuditLogEntry(
+                $"audit-{Guid.NewGuid():N}",
+                "specification.approved",
+                "specification",
+                $"{savedDraft.Id}:{savedDraft.Version}",
+                $"Specification {savedDraft.Id} version {savedDraft.Version} approved.",
+                request.ApprovedBy.Trim(),
+                now),
+            cancellationToken);
 
         return Ok(savedDraft);
     }
