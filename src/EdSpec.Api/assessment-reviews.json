@@ -69,6 +69,111 @@
       ],
       "confidence": 0.85,
       "createdAt": "2026-08-17T04:53:31.7220992+00:00"
+    },
+    {
+      "id": "review-b0fd8ac331ff44dba1559f42f889e0f1",
+      "assessmentId": "assessment-f6f43d346fbc4ff39730fc10532cddf6",
+      "specificationId": "algebra-basic-001",
+      "specificationVersion": "5.0.5",
+      "status": "passed",
+      "findings": [
+        {
+          "severity": "low",
+          "message": "Learning objectives align: every question maps to the specification learning objective \u0027Solve single-variable linear equations\u0027.",
+          "evidence": "All 5 questions include learningObjective \u0027Solve single-variable linear equations\u0027 (questions q1\u2013q5).",
+          "confidence": 0.9
+        },
+        {
+          "severity": "low",
+          "message": "Question count and type match the specification: 5 multiple-choice questions with 4 options each.",
+          "evidence": "Specification requires 5 questions, multiple-choice, 4 options per question. Assessment contains 5 questions (q1\u2013q5), each with 4 options (A\u2013D).",
+          "confidence": 0.9
+        },
+        {
+          "severity": "low",
+          "message": "Difficulty distribution matches the specification: 2 easy, 2 medium, 1 hard.",
+          "evidence": "Assessment difficulties: q1 easy, q2 easy, q3 medium, q4 medium, q5 hard \u2014 matching the spec distribution.",
+          "confidence": 0.9
+        },
+        {
+          "severity": "low",
+          "message": "Scoring is consistent with the specification: 2 points per question, total 10 points.",
+          "evidence": "Each question has points = 2 (q1\u2013q5). Sum = 10, matching \u0027pointsPerQuestion\u0027:2 and \u0027totalPoints\u0027:10 in the spec.",
+          "confidence": 0.9
+        },
+        {
+          "severity": "low",
+          "message": "Correct answers are mathematically correct and unambiguous.",
+          "evidence": "Solutions: q1 x=4 (A), q2 x=3 (B), q3 x=6 (A), q4 x=14 (B), q5 x=48 (B). These correspond to the provided correctOptionId values for q1\u2013q5.",
+          "confidence": 0.95
+        }
+      ],
+      "confidence": 0.85,
+      "createdAt": "2026-08-17T13:39:52.2155066+00:00"
+    },
+    {
+      "id": "review-7c49f5a339f445ff851c42a367c655ae",
+      "assessmentId": "assessment-58a35bd19b744550949b5927e365216d",
+      "specificationId": "algebra-basic-001",
+      "specificationVersion": "5.0.1",
+      "status": "passed",
+      "findings": [
+        {
+          "severity": "low",
+          "message": "Assessment aligns with the specification\u0027s learning objective and question rules.",
+          "evidence": "Specification LO: \u0027Solve single-variable linear equations\u0027. All 5 questions have learningObjective \u0027Solve single-variable linear equations\u0027. Spec requires 5 multiple-choice questions with 4 options each; assessment contains 5 questions, each multiple-choice with 4 options.",
+          "confidence": 0.95
+        },
+        {
+          "severity": "low",
+          "message": "Difficulty distribution matches the specification.",
+          "evidence": "Specification distribution: easy 2, medium 2, hard 1. Assessment: q1,q2 marked easy (2); q3,q4 marked medium (2); q5 marked hard (1). Total questions = 5.",
+          "confidence": 0.9
+        },
+        {
+          "severity": "low",
+          "message": "Answers and distractors are correct and unambiguous; correctOptionId values are accurate.",
+          "evidence": "q1: 2x\u002B3=7 -\u003E x=2 -\u003E correctOptionId B (2). q2: 5x=20 -\u003E x=4 -\u003E correctOptionId C (4). q3: 3(x-2)=9 -\u003E 3x-6=9 -\u003E x=5 -\u003E correctOptionId B (5). q4: (1/2)x\u002B3=7 -\u003E (1/2)x=4 -\u003E x=8 -\u003E correctOptionId C (8). q5: 3(2x-1)-4(x\u002B5)=2-(x/2) -\u003E 6x-3-4x-20=2-(x/2) -\u003E 2x-23=2-(x/2) -\u003E multiply 2: 4x-46=4-x -\u003E 5x=50 -\u003E x=10 -\u003E correctOptionId B (10). All correctOptionId entries match computed solutions.",
+          "confidence": 0.95
+        },
+        {
+          "severity": "low",
+          "message": "Scoring is consistent with the specification.",
+          "evidence": "Specification: pointsPerQuestion 2, totalPoints 10. Assessment: each question \u0027points\u0027: 2 and 5 questions -\u003E sum 10.",
+          "confidence": 0.95
+        },
+        {
+          "severity": "low",
+          "message": "Minor presentation note: fractional notation is clear but consider consistent formatting for learners new to algebra.",
+          "evidence": "q4 uses \u0027(1/2)x\u0027 and q5 uses \u0027(x/2)\u0027; both are acceptable and unambiguous. For clarity, you may optionally use explicit multiplication \u0027(1/2) * x\u0027 or decimals for certain audiences, but this is not required.",
+          "confidence": 0.7
+        }
+      ],
+      "confidence": 0.85,
+      "createdAt": "2026-08-17T13:57:01.8575937+00:00"
+    },
+    {
+      "id": "review-2f3d4133ee10412bbe09bb0a298f8831",
+      "assessmentId": "assessment-fd1ea3b3e88c4be0905fcd9d59ac52fb",
+      "specificationId": "algebra-basic-001",
+      "specificationVersion": "5.0.8",
+      "status": "passed",
+      "findings": [
+        {
+          "severity": "low",
+          "message": "Assessment aligns with the approved specification across learning objective, question count/type, difficulty distribution, and scoring.",
+          "evidence": "Learning objective: All 5 questions labelled \u0027Solve single-variable linear equations\u0027, matching specification LO. Question count/type: 5 questions, each multiple-choice with 4 options, matching questionRules (totalQuestions=5, optionsPerQuestion=4). Difficulty distribution: easy=2 (q1,q2), medium=2 (q3,q4), hard=1 (q5) \u2014 matches specification. Scoring: each question 2 points, total 10 points \u2014 matches scoringRules.",
+          "confidence": 0.92
+        },
+        {
+          "severity": "low",
+          "message": "Correct answers verified; no ambiguous options detected.",
+          "evidence": "q1: 2x\u002B3=11 =\u003E x=4 (option B). q2: x/5=7 =\u003E x=35 (option C). q3: 3(x-2)=2x\u002B9 =\u003E x=15 (option B). q4: 4x\u002B1=-2x\u002B11 =\u003E x=10/6=5/3 (option A). q5: (2/3)x - (1/4)(x\u002B2)=3 =\u003E (5/12)x=7/2 =\u003E x=(7/2)*(12/5)=42/5=8.4 (option D). All correctOptionId values match these solutions. Options do not present equivalent duplicates that could cause ambiguity.",
+          "confidence": 0.9
+        }
+      ],
+      "confidence": 0.85,
+      "createdAt": "2026-08-17T14:05:26.9624766+00:00"
     }
   ]
 }

@@ -57,7 +57,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// The local Vite POC runs against the HTTP development profile on port 5246.
+// Production deployments should enforce HTTPS at the hosting layer.
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
 
 app.UseAuthorization();
 
