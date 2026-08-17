@@ -26,5 +26,4 @@ npm run build
 
 ## POC scenario
 
-The only subject is **Basic Algebra — Solve single-variable linear equations**.
-
+End users can create an approved specification for any subject or topic, then generate and independently review an MCQ assessment from that specification.

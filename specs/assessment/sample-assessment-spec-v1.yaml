@@ -1,9 +1,9 @@
-id: algebra-basic
+id: sample-topic-assessment
 version: 1.0.0
 status: draft
-title: Basic Algebra Assessment
-subject: Basic Algebra
-learningObjective: Solve single-variable linear equations
+title: Sample Topic Assessment
+subject: Sample Subject
+learningObjective: Demonstrate understanding of the approved topic
 questionRules:
   totalQuestions: 5
   questionType: multiple-choice
@@ -19,4 +19,3 @@ approval:
   required: true
   approvedBy: null
   approvedAt: null
-

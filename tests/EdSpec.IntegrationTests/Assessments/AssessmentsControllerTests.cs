@@ -1,4 +1,5 @@
 using EdSpec.Api.Controllers;
+using EdSpec.Api.Workflows;
 using EdSpec.Application.Assessments;
 using EdSpec.Application.Audit;
 using EdSpec.Application.Specifications;
@@ -32,7 +33,7 @@ public sealed class AssessmentsControllerTests
         var controller = CreateController(CreateSpecification("draft"));
 
         var result = await controller.Generate(
-            "algebra-basic",
+            "sample-topic-assessment",
             "1.0.0",
             new GenerateAssessmentRequest("POC User"),
             CancellationToken.None);
@@ -47,14 +48,14 @@ public sealed class AssessmentsControllerTests
         var controller = CreateController(CreateSpecification("approved"), repository);
 
         var result = await controller.Generate(
-            "algebra-basic",
+            "sample-topic-assessment",
             "1.0.0",
             new GenerateAssessmentRequest("POC User"),
             CancellationToken.None);
 
         var okResult = Assert.IsType<OkObjectResult>(result.Result);
         var response = Assert.IsType<GenerateAssessmentResponse>(okResult.Value);
-        Assert.Equal("algebra-basic", response.Assessment.SpecificationId);
+        Assert.Equal("sample-topic-assessment", response.Assessment.SpecificationId);
         Assert.Equal("1.0.0", response.Assessment.SpecificationVersion);
         Assert.Equal("generated", response.Assessment.Status);
         Assert.Equal("passed", response.Review.Status);
@@ -66,7 +67,7 @@ public sealed class AssessmentsControllerTests
         FakeGeneratedAssessmentRepository? assessmentRepository = null)
     {
         var auditRepository = new FakeAuditLogRepository();
-        return new AssessmentsController(
+        var orchestrator = new SemanticKernelAssessmentWorkflowOrchestrator(
             new FakeSpecificationDraftRepository(specification),
             assessmentRepository ?? new FakeGeneratedAssessmentRepository(),
             new FakeAssessmentReviewRepository(),
@@ -74,17 +75,19 @@ public sealed class AssessmentsControllerTests
             new FakeAssessmentGenerationAgent(),
             new FakeAssessmentReviewAgent(),
             new GeneratedAssessmentValidator());
+
+        return new AssessmentsController(orchestrator);
     }
 
     private static SpecificationDraft CreateSpecification(string status)
     {
         return new SpecificationDraft(
-            "algebra-basic",
+            "sample-topic-assessment",
             "1.0.0",
             status,
-            "Basic Algebra Assessment",
-            "Basic Algebra",
-            "Solve single-variable linear equations",
+            "Sample Topic Assessment",
+            "Sample Subject",
+            "Demonstrate understanding of the approved topic",
             new QuestionRules(1, "multiple-choice", 4),
             new DifficultyDistribution(1, 0, 0),
             new ScoringRules(2, 2),
@@ -155,12 +158,12 @@ public sealed class AssessmentsControllerTests
                     specification.LearningObjective,
                     "easy",
                     "multiple-choice",
-                    "Solve x + 2 = 5.",
+                    "Which option best matches the approved topic?",
                     [
-                        new GeneratedOption("A", "3"),
-                        new GeneratedOption("B", "4"),
-                        new GeneratedOption("C", "5"),
-                        new GeneratedOption("D", "6")
+                        new GeneratedOption("A", "The correct concept"),
+                        new GeneratedOption("B", "A distractor"),
+                        new GeneratedOption("C", "Another distractor"),
+                        new GeneratedOption("D", "An unrelated distractor")
                     ],
                     "A",
                     2)

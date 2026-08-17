@@ -4,12 +4,11 @@ function App() {
       <p className="eyebrow">Spec-driven EdTech POC</p>
       <h1>EdSpec AI</h1>
       <p>
-        Generate and independently review a Basic Algebra assessment from an
-        approved specification.
+        Generate and independently review an MCQ assessment for any approved
+        subject specification.
       </p>
     </main>
   )
 }
 
 export default App
-
