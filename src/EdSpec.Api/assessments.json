@@ -1,7 +1,7 @@
 {
   "assessments": [
     {
-      "id": "assessment-ff133b09944b4381b74a110aa531c44d",
+      "id": "assessment-d07f88f1e74c45f28cf6472221844378",
       "specificationId": "algebra-basic",
       "specificationVersion": "1.0.0",
       "status": "generated",
@@ -11,23 +11,23 @@
           "learningObjective": "Solve single-variable linear equations",
           "difficulty": "easy",
           "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x \u002B 3 = 11.",
+          "prompt": "Solve for x: 3x \u002B 5 = 11.",
           "options": [
             {
               "id": "A",
-              "text": "4"
+              "text": "x = 2"
             },
             {
               "id": "B",
-              "text": "5"
+              "text": "x = -2"
             },
             {
               "id": "C",
-              "text": "2"
+              "text": "x = 6"
             },
             {
               "id": "D",
-              "text": "-4"
+              "text": "x = 1/2"
             }
           ],
           "correctOptionId": "A",
@@ -38,23 +38,23 @@
           "learningObjective": "Solve single-variable linear equations",
           "difficulty": "easy",
           "questionType": "multiple-choice",
-          "prompt": "Solve for x: 5x - 10 = 0.",
+          "prompt": "Solve for x: 2x - 4 = 10.",
           "options": [
             {
               "id": "A",
-              "text": "0"
+              "text": "x = 3"
             },
             {
               "id": "B",
-              "text": "2"
+              "text": "x = 7"
             },
             {
               "id": "C",
-              "text": "-2"
+              "text": "x = -7"
             },
             {
               "id": "D",
-              "text": "10"
+              "text": "x = 14"
             }
           ],
           "correctOptionId": "B",
@@ -65,23 +65,23 @@
           "learningObjective": "Solve single-variable linear equations",
           "difficulty": "medium",
           "questionType": "multiple-choice",
-          "prompt": "Solve for x: (x / 3) \u002B 4 = 9.",
+          "prompt": "Solve for x: 4(x - 2) = 3x \u002B 5.",
           "options": [
             {
               "id": "A",
-              "text": "15"
+              "text": "x = 13"
             },
             {
               "id": "B",
-              "text": "5"
+              "text": "x = -13"
             },
             {
               "id": "C",
-              "text": "12"
+              "text": "x = 1"
             },
             {
               "id": "D",
-              "text": "9"
+              "text": "x = 8"
             }
           ],
           "correctOptionId": "A",
@@ -92,26 +92,26 @@
           "learningObjective": "Solve single-variable linear equations",
           "difficulty": "medium",
           "questionType": "multiple-choice",
-          "prompt": "Solve for x: 4(x - 2) = 3x \u002B 6.",
+          "prompt": "Solve for x: (x/3) \u002B 5 = 2x - 4.",
           "options": [
             {
               "id": "A",
-              "text": "2"
+              "text": "x = 27/5"
             },
             {
               "id": "B",
-              "text": "14"
+              "text": "x = 5"
             },
             {
               "id": "C",
-              "text": "-14"
+              "text": "x = -27/5"
             },
             {
               "id": "D",
-              "text": "10"
+              "text": "x = 9/5"
             }
           ],
-          "correctOptionId": "B",
+          "correctOptionId": "A",
           "points": 2
         },
         {
@@ -119,23 +119,168 @@
           "learningObjective": "Solve single-variable linear equations",
           "difficulty": "hard",
           "questionType": "multiple-choice",
-          "prompt": "Solve for x: (3/4)x - (1/2)(x \u002B 2) = 5.",
+          "prompt": "Solve for x: 5 - (2x \u002B 3)/4 = (x - 1)/2.",
           "options": [
             {
               "id": "A",
-              "text": "12"
+              "text": "x = 19/4"
             },
             {
               "id": "B",
-              "text": "24"
+              "text": "x = 7/4"
             },
             {
               "id": "C",
-              "text": "18"
+              "text": "x = -19/4"
             },
             {
               "id": "D",
-              "text": "-24"
+              "text": "x = 1/4"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        }
+      ],
+      "createdBy": "POC User",
+      "createdAt": "2026-08-17T04:45:00.4482291+00:00"
+    },
+    {
+      "id": "assessment-f27f4dca4ff949318c7792e3d894f39e",
+      "specificationId": "science-basic",
+      "specificationVersion": "1.0.0",
+      "status": "generated",
+      "questions": [
+        {
+          "id": "q1",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "easy",
+          "questionType": "multiple-choice",
+          "prompt": "A car travels 60 kilometers in 2 hours. What is its average speed?",
+          "options": [
+            {
+              "id": "A",
+              "text": "30 km/h"
+            },
+            {
+              "id": "B",
+              "text": "60 km/h"
+            },
+            {
+              "id": "C",
+              "text": "120 km/h"
+            },
+            {
+              "id": "D",
+              "text": "20 km/h"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q2",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "easy",
+          "questionType": "multiple-choice",
+          "prompt": "A runner moves at a constant speed of 5 m/s for 10 seconds. How far does the runner travel?",
+          "options": [
+            {
+              "id": "A",
+              "text": "50 m"
+            },
+            {
+              "id": "B",
+              "text": "500 m"
+            },
+            {
+              "id": "C",
+              "text": "15 m"
+            },
+            {
+              "id": "D",
+              "text": "0.5 m"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q3",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "A car accelerates uniformly from rest to 20 m/s in 10 seconds. What is the car\u0027s acceleration?",
+          "options": [
+            {
+              "id": "A",
+              "text": "2 m/s\u00B2"
+            },
+            {
+              "id": "B",
+              "text": "0.5 m/s\u00B2"
+            },
+            {
+              "id": "C",
+              "text": "200 m/s\u00B2"
+            },
+            {
+              "id": "D",
+              "text": "10 m/s\u00B2"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q4",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "Two trains are 250 km apart and move toward each other. One train travels at 40 km/h and the other at 60 km/h. How long until they meet?",
+          "options": [
+            {
+              "id": "A",
+              "text": "2 hours"
+            },
+            {
+              "id": "B",
+              "text": "2.5 hours"
+            },
+            {
+              "id": "C",
+              "text": "4 hours"
+            },
+            {
+              "id": "D",
+              "text": "1.5 hours"
+            }
+          ],
+          "correctOptionId": "B",
+          "points": 2
+        },
+        {
+          "id": "q5",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "hard",
+          "questionType": "multiple-choice",
+          "prompt": "A ball is thrown vertically upward with an initial speed of 20 m/s. Neglect air resistance and use g = 10 m/s\u00B2. What maximum height does the ball reach above the launch point?",
+          "options": [
+            {
+              "id": "A",
+              "text": "10 m"
+            },
+            {
+              "id": "B",
+              "text": "20 m"
+            },
+            {
+              "id": "C",
+              "text": "40 m"
+            },
+            {
+              "id": "D",
+              "text": "2 m"
             }
           ],
           "correctOptionId": "B",
@@ -143,7 +288,7 @@
         }
       ],
       "createdBy": "POC User",
-      "createdAt": "2026-08-12T10:41:23.387831+00:00"
+      "createdAt": "2026-08-17T04:52:26.4212684+00:00"
     }
   ]
 }

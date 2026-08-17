@@ -10,11 +10,11 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "id": "algebra-basic",
+  "id": "sample-topic-assessment",
   "version": "1.0.0",
-  "title": "Basic Algebra Assessment",
-  "subject": "Basic Algebra",
-  "learningObjective": "Solve single-variable linear equations",
+  "title": "Sample Topic Assessment",
+  "subject": "Sample Subject",
+  "learningObjective": "Demonstrate understanding of the approved topic",
   "questionRules": {
     "totalQuestions": 5,
     "questionType": "multiple-choice",
@@ -33,19 +33,19 @@ Accept: application/json
 
 ###
 
-GET {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0
+GET {{EdSpec.Api_HostAddress}}/api/specifications/sample-topic-assessment/versions/1.0.0
 Accept: application/json
 
 ###
 
-PUT {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0
+PUT {{EdSpec.Api_HostAddress}}/api/specifications/sample-topic-assessment/versions/1.0.0
 Content-Type: application/json
 Accept: application/json
 
 {
-  "title": "Basic Algebra Assessment",
-  "subject": "Basic Algebra",
-  "learningObjective": "Solve single-variable linear equations",
+  "title": "Sample Topic Assessment",
+  "subject": "Sample Subject",
+  "learningObjective": "Demonstrate understanding of the approved topic",
   "questionRules": {
     "totalQuestions": 5,
     "questionType": "multiple-choice",
@@ -64,7 +64,7 @@ Accept: application/json
 
 ###
 
-POST {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0/approve
+POST {{EdSpec.Api_HostAddress}}/api/specifications/sample-topic-assessment/versions/1.0.0/approve
 Content-Type: application/json
 Accept: application/json
 
@@ -74,7 +74,7 @@ Accept: application/json
 
 ###
 
-POST {{EdSpec.Api_HostAddress}}/api/specifications/algebra-basic/versions/1.0.0/assessments/generate
+POST {{EdSpec.Api_HostAddress}}/api/specifications/sample-topic-assessment/versions/1.0.0/assessments/generate
 Content-Type: application/json
 Accept: application/json
 

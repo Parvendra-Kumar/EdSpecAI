@@ -22,11 +22,8 @@
 - Audio or video
 - Accessibility testing
 - Automatic publishing
-- Multiple subjects
+- Non-MCQ assessment formats
 
-## Single POC scenario
+## POC scenario
 
-**Basic Algebra — Solve single-variable linear equations**
-
-No additional subjects will be added to the five-day POC.
-
+End users can create specifications for different subjects or topics. The POC assessment format remains MCQ-based so deterministic validation, review, and audit stay simple.

@@ -24,11 +24,41 @@
       },
       "approval": {
         "required": true,
-        "approvedBy": "string",
-        "approvedAt": "2026-08-12T07:26:39.9489973+00:00"
+        "approvedBy": "POC Reviewer",
+        "approvedAt": "2026-08-17T04:44:29.0367356+00:00"
       },
-      "createdAt": "2026-08-12T05:54:42.202537+00:00",
-      "updatedAt": "2026-08-12T07:26:39.9489973+00:00"
+      "createdAt": "2026-08-17T04:44:00.7372374+00:00",
+      "updatedAt": "2026-08-17T04:44:29.0367356+00:00"
+    },
+    {
+      "id": "science-basic",
+      "version": "1.0.0",
+      "status": "approved",
+      "title": "Basic Science Assessment",
+      "subject": "Basic Science",
+      "learningObjective": "Solve the simple motion questions.",
+      "questionRules": {
+        "totalQuestions": 5,
+        "questionType": "multiple-choice",
+        "optionsPerQuestion": 4
+      },
+      "difficultyDistribution": {
+        "easy": 2,
+        "medium": 2,
+        "hard": 1,
+        "totalQuestions": 5
+      },
+      "scoringRules": {
+        "pointsPerQuestion": 2,
+        "totalPoints": 10
+      },
+      "approval": {
+        "required": true,
+        "approvedBy": "POC Reviewer",
+        "approvedAt": "2026-08-17T04:49:22.5630797+00:00"
+      },
+      "createdAt": "2026-08-17T04:49:06.6056525+00:00",
+      "updatedAt": "2026-08-17T04:49:22.5630797+00:00"
     }
   ]
 }

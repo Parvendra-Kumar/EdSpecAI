@@ -55,12 +55,12 @@ public sealed class GeneratedAssessmentValidatorTests
     private static SpecificationDraft CreateSpecification()
     {
         return new SpecificationDraft(
-            "algebra-basic",
+            "sample-topic-assessment",
             "1.0.0",
             "approved",
-            "Basic Algebra Assessment",
-            "Basic Algebra",
-            "Solve single-variable linear equations",
+            "Sample Topic Assessment",
+            "Sample Subject",
+            "Demonstrate understanding of the approved topic",
             new QuestionRules(5, "multiple-choice", 4),
             new DifficultyDistribution(2, 2, 1),
             new ScoringRules(2, 10),
@@ -85,15 +85,15 @@ public sealed class GeneratedAssessmentValidatorTests
     {
         return new GeneratedQuestion(
             id,
-            "Solve single-variable linear equations",
+            "Demonstrate understanding of the approved topic",
             difficulty,
             "multiple-choice",
-            "Solve x + 2 = 5.",
+            "Which option best matches the approved topic?",
             [
-                new GeneratedOption("A", "3"),
-                new GeneratedOption("B", "4"),
-                new GeneratedOption("C", "5"),
-                new GeneratedOption("D", "6")
+                new GeneratedOption("A", "The correct concept"),
+                new GeneratedOption("B", "A distractor"),
+                new GeneratedOption("C", "Another distractor"),
+                new GeneratedOption("D", "An unrelated distractor")
             ],
             "A",
             2);
