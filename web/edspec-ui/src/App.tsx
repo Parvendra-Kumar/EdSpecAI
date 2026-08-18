@@ -186,26 +186,11 @@ function App() {
     void loadSpecifications()
   }
 
-  const openCreate = async () => {
+  const openCreate = () => {
     setError('')
     setMessage('')
     setSpec(null)
-    let available = specifications
-    if (available.length === 0) {
-      try {
-        setSpecificationsLoading(true)
-        available = await api<Spec[]>('/api/specifications')
-        setSpecifications(available)
-      } catch (e) {
-        setError((e as Error).message)
-      } finally {
-        setSpecificationsLoading(false)
-      }
-    }
-    const latestDraft = [...available]
-      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())[0]
-    if (latestDraft) fromSpec(latestDraft, setForm)
-    else setForm(blank)
+    setForm(blank)
     setView('create')
   }
 
@@ -375,7 +360,7 @@ function App() {
         <header><span>REVIEWER WORKSPACE <i>/ {view}</i></span><strong>POC workspace</strong></header>
         <section className="wrap">
           {error && <div className="error"><b>Request failed</b><div>{error}</div></div>}
-          {view === 'overview' && <Dashboard specifications={specifications} assessments={assessments} onCreate={openCreate} onOpen={openAllSpecifications} />}
+          {view === 'overview' && <Dashboard specifications={specifications} assessments={assessments} onCreate={openCreate} onOpenSpecifications={openAllSpecifications} onOpenAssessments={openAssessments} />}
           {view === 'create' && <Create form={form} setForm={setForm} onCreate={create} onLoad={load} busy={busy} />}
           {view === 'detail' && spec && <Detail spec={spec} form={form} setForm={setForm} onSave={save} onApprove={approve} onGenerate={() => generate(spec)} busy={busy} user={user} />}
           {view === 'all-specifications' && <SpecificationsLibraryPage
@@ -421,15 +406,15 @@ function App() {
   )
 }
 
-function StatCards({ approved, assessments, drafts, onOpen }: { approved: number; assessments: number; drafts: number; onOpen: () => void }) {
+function StatCards({ approved, assessments, drafts, onOpenSpecifications, onOpenAssessments }: { approved: number; assessments: number; drafts: number; onOpenSpecifications: () => void; onOpenAssessments: () => void }) {
   return <div className="stats live-stats">
-    <button className="stat-card" onClick={onOpen}><span>◇</span><label>Approved specifications<b>{approved}</b><small>Open specification library</small></label></button>
-    <button className="stat-card" onClick={onOpen}><span>▤</span><label>Assessments generated<b>{assessments}</b><small>View generated assessments</small></label></button>
-    <button className="stat-card" onClick={onOpen}><span>◉</span><label>Awaiting review<b>{drafts}</b><small>{drafts ? 'Drafts need attention' : 'Nothing waiting for review'}</small></label></button>
+    <button className="stat-card" onClick={onOpenSpecifications}><span>◇</span><label>Approved specifications<b>{approved}</b><small>Open specification library</small></label></button>
+    <button className="stat-card" onClick={onOpenAssessments}><span>▤</span><label>Assessments generated<b>{assessments}</b><small>View generated assessments</small></label></button>
+    <button className="stat-card" onClick={onOpenSpecifications}><span>◉</span><label>Awaiting review<b>{drafts}</b><small>{drafts ? 'Drafts need attention' : 'Nothing waiting for review'}</small></label></button>
   </div>
 }
 
-function Dashboard({ specifications, assessments, onCreate, onOpen }: { specifications: Spec[]; assessments: AssessmentSummary[]; onCreate: () => void; onOpen: () => void }) {
+function Dashboard({ specifications, assessments, onCreate, onOpenSpecifications, onOpenAssessments }: { specifications: Spec[]; assessments: AssessmentSummary[]; onCreate: () => void; onOpenSpecifications: () => void; onOpenAssessments: () => void }) {
   const approved = specifications.filter(item => item.status === 'approved').length
   const drafts = specifications.filter(item => item.status === 'draft').length
   return <>
@@ -437,7 +422,7 @@ function Dashboard({ specifications, assessments, onCreate, onOpen }: { specific
       <div><small>REVIEWER WORKSPACE</small><h1>Workspace overview</h1><p>Here’s what needs your attention today.</p></div>
       <button className="primary" onClick={onCreate}>＋ New specification</button>
     </div>
-    <StatCards approved={approved} assessments={assessments.length} drafts={drafts} onOpen={onOpen} />
+    <StatCards approved={approved} assessments={assessments.length} drafts={drafts} onOpenSpecifications={onOpenSpecifications} onOpenAssessments={onOpenAssessments} />
     <div className="stats legacy-stats" aria-hidden="true">
       <div><span>◇</span><label>Approved specifications<b>8</b><small>↑ 1 this month</small></label></div>
       <div><span>▤</span><label>Assessments generated<b>12</b><small>↑ 18% this month</small></label></div>
@@ -449,7 +434,7 @@ function Dashboard({ specifications, assessments, onCreate, onOpen }: { specific
         ['●', 'Assessment generated', 'Basic Algebra · 5 questions', 'Generated'],
         ['●', 'Draft specification', 'Basic Science · v4.0.0', 'Draft'],
       ].map(x => <div className="activity" key={x[1]}><i>{x[0]}</i><div><b>{x[1]}</b><small>{x[2]}</small></div><em>{x[3]}</em></div>)}</section>
-      <section className="card"><h2>Needs your attention</h2><p className="muted">Items waiting for a decision.</p><div className="queue"><b>!</b><div><strong>Basic Algebra assessment</strong><small>3 findings · 1 high severity</small></div><button className="secondary" onClick={onOpen}>Open</button></div><div className="queue"><b>◇</b><div><strong>Basic Science</strong><small>Draft specification</small></div><button className="secondary" onClick={onOpen}>Open</button></div></section>
+      <section className="card"><h2>Needs your attention</h2><p className="muted">Items waiting for a decision.</p><div className="queue"><b>!</b><div><strong>Basic Algebra assessment</strong><small>3 findings · 1 high severity</small></div><button className="secondary" onClick={onOpenAssessments}>Open</button></div><div className="queue"><b>◇</b><div><strong>Basic Science</strong><small>Draft specification</small></div><button className="secondary" onClick={onOpenSpecifications}>Open</button></div></section>
     </div>
   </>
 }
