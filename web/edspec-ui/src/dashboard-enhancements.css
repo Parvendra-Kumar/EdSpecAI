@@ -1,0 +1,71 @@
+.dashboard-title {
+  gap: 28px;
+  padding: 18px 0 34px;
+}
+
+.dashboard-title h1 {
+  letter-spacing: -0.03em;
+}
+
+.dashboard-title p {
+  font-size: 15px;
+}
+
+.stats > div {
+  min-height: 104px;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.stats > div:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(29, 43, 78, .08);
+}
+
+.legacy-stats { display: none; }
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #e3e8f1;
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  text-align: left;
+  font: inherit;
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+  border-color: #aab2ff;
+  box-shadow: 0 12px 28px rgba(29, 43, 78, .1);
+}
+
+.stat-card > span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  background: #eef0ff;
+  border-radius: 11px;
+  color: #626bea;
+  font-size: 22px;
+}
+
+.stat-card label { color: #8994a8; font-size: 12px; cursor: pointer; }
+.stat-card b, .stat-card small { display: block; }
+.stat-card b { color: #182238; font-size: 28px; margin: 5px 0; }
+.stat-card small { color: #49a977; font-size: 10px; }
+
+button { font-family: inherit; }
+
+.dashboard-grid .card {
+  min-height: 250px;
+}
+
+@media (max-width: 900px) {
+  .dashboard-title { align-items: flex-start; }
+}

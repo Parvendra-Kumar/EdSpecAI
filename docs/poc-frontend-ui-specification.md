@@ -370,3 +370,46 @@ Configuration and documentation:
 - `docs/poc-frontend-ui-specification.md` — this consolidated implementation record.
 
 The `artifacts/verify-build` settings are environment-specific. Keep real Azure OpenAI credentials out of source control and replace any exposed key immediately.
+
+## Latest UI update: workspace overview and create flow
+
+The following behavior is the current source-of-truth for the latest POC UI changes:
+
+### Workspace overview
+
+- The overview heading is `Workspace overview`; it must not use a personal greeting such as `Good morning, Arti`.
+- Summary cards must represent live application data rather than demo values:
+  - Approved specifications: count records whose status is `approved`.
+  - Assessments generated: count persisted assessment summaries returned by the backend.
+  - Awaiting review: count specification records whose status is `draft`.
+- Summary cards are interactive. Selecting a card navigates to the relevant specification library or Assessments view.
+- Specifications and assessments are loaded when an authenticated demo session starts and are refreshed when the relevant page is opened or manually refreshed.
+- If a request fails, the existing shared error area is used; the UI must not silently replace failed data with fake numbers.
+
+### Create Specification behavior
+
+- The create form must start without hard-coded Algebra, Mathematics, or other sample values.
+- Numeric fields use an empty visual value until the user enters a value. Internal zero values must not be rendered as visible `0` defaults.
+- When Create Specification is opened, the UI loads the latest specification from `GET /api/specifications` and restores its details into the form. The latest record is selected by the greatest `updatedAt` value. This supports continuing work on the most recently edited specification, including a Science specification that has not yet been generated into an assessment.
+- If no specification exists, the form remains empty and the user can create a new record.
+- The restored record is still editable through the existing save/create/approve workflow; no values are persisted only in frontend code.
+- The `Options Per Question` input must respect the backend validation range of 2 through 8. Other validation messages must remain visible in the shared request error area.
+
+### Visual and accessibility guidance
+
+- Preserve the dark sidebar and light workspace visual system.
+- Use the application font consistently for buttons, labels, cards, inputs, and navigation.
+- Summary cards use keyboard-accessible buttons, visible hover/focus affordances, and concise supporting text.
+- Keep the responsive layout: summary cards collapse for narrow screens, content remains readable, and sidebar navigation remains usable.
+- Avoid hard-coded activity counts, specification titles, IDs, versions, or assessment names in production-facing dashboard components. Demo content should be clearly identified if retained for the POC.
+
+### Latest frontend files
+
+- `web/edspec-ui/src/App.tsx` — live overview counts/card navigation, workspace heading, empty create form, and latest-specification restoration.
+- `web/edspec-ui/src/dashboard-enhancements.css` — overview card hover states, live summary-card styling, spacing, and responsive polish.
+
+### Verification notes
+
+- After changing the frontend, restart Vite if required and hard-refresh the browser with `Ctrl+Shift+R`.
+- Verify `GET /api/specifications` and `GET /api/assessments` in the browser Network panel.
+- Confirm that the overview numbers match the response data, clicking each summary card changes the view, and opening Create Specification restores the latest edited specification rather than Algebra defaults.

@@ -629,6 +629,15 @@
       "message": "Specification polynomials version 1.0.0 deleted.",
       "actor": "Demo Teacher",
       "createdAt": "2026-08-18T12:59:44.5610264+00:00"
+    },
+    {
+      "id": "audit-e337260eb31c4060b6249cb8f39d28f1",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "science-basic-001:1.0.0",
+      "message": "Specification science-basic-001 version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T13:35:45.5727091+00:00"
     }
   ]
 }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import './dashboard.css'
+import './dashboard-enhancements.css'
 import './layout-fixes.css'
 import './ui-change-overrides.css'
 import './generator.css'
@@ -83,19 +84,9 @@ type Form = {
 }
 
 const blank: Form = {
-  id: 'algebra-basic-001',
-  version: '1.0.0',
-  title: 'Basic Algebra',
-  subject: 'Mathematics',
-  learningObjective: 'Solve single-variable linear equations',
-  totalQuestions: 5,
-  questionType: 'multiple-choice',
-  optionsPerQuestion: 4,
-  easy: 2,
-  medium: 2,
-  hard: 1,
-  pointsPerQuestion: 2,
-  totalPoints: 10,
+  id: '', version: '', title: '', subject: '', learningObjective: '',
+  totalQuestions: 0, questionType: '', optionsPerQuestion: 0,
+  easy: 0, medium: 0, hard: 0, pointsPerQuestion: 0, totalPoints: 0,
 }
 
 async function api<T>(path: string, init?: RequestInit): Promise<T> {
@@ -135,6 +126,12 @@ function App() {
   const [message, setMessage] = useState('')
   const [toast, setToast] = useState('')
   const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    if (!user) return
+    void api<Spec[]>('/api/specifications').then(setSpecifications).catch(() => undefined)
+    void api<AssessmentSummary[]>('/api/assessments').then(setAssessments).catch(() => undefined)
+  }, [user])
 
   useEffect(() => {
     if (user && !requestedBy) setRequestedBy(user.name)
@@ -187,6 +184,29 @@ function App() {
     setView('generate')
     setMessage('')
     void loadSpecifications()
+  }
+
+  const openCreate = async () => {
+    setError('')
+    setMessage('')
+    setSpec(null)
+    let available = specifications
+    if (available.length === 0) {
+      try {
+        setSpecificationsLoading(true)
+        available = await api<Spec[]>('/api/specifications')
+        setSpecifications(available)
+      } catch (e) {
+        setError((e as Error).message)
+      } finally {
+        setSpecificationsLoading(false)
+      }
+    }
+    const latestDraft = [...available]
+      .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())[0]
+    if (latestDraft) fromSpec(latestDraft, setForm)
+    else setForm(blank)
+    setView('create')
   }
 
   const openAllSpecifications = () => {
@@ -340,7 +360,7 @@ function App() {
         <div className="workspace">WORKSPACE</div>
         <nav>
           <button className={view === 'overview' ? 'active' : ''} onClick={() => setView('overview')}>⌂　Overview</button>
-          <button className={view === 'create' || view === 'detail' ? 'active' : ''} onClick={() => setView('create')}>◇　Create Specification</button>
+          <button className={view === 'create' || view === 'detail' ? 'active' : ''} onClick={openCreate}>◇　Create Specification</button>
           <button className={view === 'all-specifications' ? 'active' : ''} onClick={openAllSpecifications}>☆　View all Specifications</button>
           <button className={view === 'assessment' ? 'active' : ''} onClick={openAssessments}>▤　Assessments</button>
           <button className={view === 'generate' ? 'active' : ''} onClick={openGenerator}>✦　Generate assessment</button>
@@ -355,7 +375,7 @@ function App() {
         <header><span>REVIEWER WORKSPACE <i>/ {view}</i></span><strong>POC workspace</strong></header>
         <section className="wrap">
           {error && <div className="error"><b>Request failed</b><div>{error}</div></div>}
-          {view === 'overview' && <Dashboard onCreate={() => setView('create')} onOpen={() => { setForm({ ...blank, version: '5.0.1' }); setView('detail') }} />}
+          {view === 'overview' && <Dashboard specifications={specifications} assessments={assessments} onCreate={openCreate} onOpen={openAllSpecifications} />}
           {view === 'create' && <Create form={form} setForm={setForm} onCreate={create} onLoad={load} busy={busy} />}
           {view === 'detail' && spec && <Detail spec={spec} form={form} setForm={setForm} onSave={save} onApprove={approve} onGenerate={() => generate(spec)} busy={busy} user={user} />}
           {view === 'all-specifications' && <SpecificationsLibraryPage
@@ -401,13 +421,24 @@ function App() {
   )
 }
 
-function Dashboard({ onCreate, onOpen }: { onCreate: () => void; onOpen: () => void }) {
+function StatCards({ approved, assessments, drafts, onOpen }: { approved: number; assessments: number; drafts: number; onOpen: () => void }) {
+  return <div className="stats live-stats">
+    <button className="stat-card" onClick={onOpen}><span>◇</span><label>Approved specifications<b>{approved}</b><small>Open specification library</small></label></button>
+    <button className="stat-card" onClick={onOpen}><span>▤</span><label>Assessments generated<b>{assessments}</b><small>View generated assessments</small></label></button>
+    <button className="stat-card" onClick={onOpen}><span>◉</span><label>Awaiting review<b>{drafts}</b><small>{drafts ? 'Drafts need attention' : 'Nothing waiting for review'}</small></label></button>
+  </div>
+}
+
+function Dashboard({ specifications, assessments, onCreate, onOpen }: { specifications: Spec[]; assessments: AssessmentSummary[]; onCreate: () => void; onOpen: () => void }) {
+  const approved = specifications.filter(item => item.status === 'approved').length
+  const drafts = specifications.filter(item => item.status === 'draft').length
   return <>
     <div className="dashboard-title">
-      <div><small>REVIEWER WORKSPACE</small><h1>Good morning, Arti</h1><p>Here’s what needs your attention today.</p></div>
+      <div><small>REVIEWER WORKSPACE</small><h1>Workspace overview</h1><p>Here’s what needs your attention today.</p></div>
       <button className="primary" onClick={onCreate}>＋ New specification</button>
     </div>
-    <div className="stats">
+    <StatCards approved={approved} assessments={assessments.length} drafts={drafts} onOpen={onOpen} />
+    <div className="stats legacy-stats" aria-hidden="true">
       <div><span>◇</span><label>Approved specifications<b>8</b><small>↑ 1 this month</small></label></div>
       <div><span>▤</span><label>Assessments generated<b>12</b><small>↑ 18% this month</small></label></div>
       <div><span>◉</span><label>Awaiting review<b>2</b><small>Needs your attention</small></label></div>
@@ -484,7 +515,7 @@ function EmptyAssessment({ onGenerate }: { onGenerate: () => void }) {
 
 function fields(f: Form, set: (f: Form) => void, disabled = false) {
   const update = (key: keyof Form, value: string) => set({ ...f, [key]: ['totalQuestions', 'optionsPerQuestion', 'easy', 'medium', 'hard', 'pointsPerQuestion', 'totalPoints'].includes(key) ? Number(value) : value })
-  return <div className="grid">{(['title', 'subject', 'learningObjective', 'questionType'] as const).map(key => <label key={key}>{key === 'learningObjective' ? 'Learning objective' : key[0].toUpperCase() + key.slice(1)}<input disabled={disabled} value={f[key]} onChange={e => update(key, e.target.value)} /></label>)}{(['totalQuestions', 'optionsPerQuestion', 'easy', 'medium', 'hard', 'pointsPerQuestion', 'totalPoints'] as const).map(key => <label key={key}>{key.replace(/[A-Z]/g, m => ` ${m}`).replace(/^./, m => m.toUpperCase())}<input disabled={disabled} type="number" value={f[key]} onChange={e => update(key, e.target.value)} /></label>)}</div>
+  return <div className="grid">{(['title', 'subject', 'learningObjective', 'questionType'] as const).map(key => <label key={key}>{key === 'learningObjective' ? 'Learning objective' : key[0].toUpperCase() + key.slice(1)}<input disabled={disabled} value={f[key]} onChange={e => update(key, e.target.value)} /></label>)}{(['totalQuestions', 'optionsPerQuestion', 'easy', 'medium', 'hard', 'pointsPerQuestion', 'totalPoints'] as const).map(key => <label key={key}>{key.replace(/[A-Z]/g, m => ` ${m}`).replace(/^./, m => m.toUpperCase())}<input disabled={disabled} type="number" min={key === 'optionsPerQuestion' ? 2 : 0} value={f[key] === 0 ? '' : f[key]} onChange={e => update(key, e.target.value)} /></label>)}</div>
 }
 
 function Create({ form, setForm, onCreate, onLoad, busy }: { form: Form; setForm: (f: Form) => void; onCreate: () => void; onLoad: () => void; busy: boolean }) {
