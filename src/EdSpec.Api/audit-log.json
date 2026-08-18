@@ -89,6 +89,141 @@
       "message": "Semantic Kernel assessment workflow completed.",
       "actor": "Semantic Kernel Orchestrator",
       "createdAt": "2026-08-17T04:53:36.0793753+00:00"
+    },
+    {
+      "id": "audit-d99b931040824b46a08c22e239861c03",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.5",
+      "message": "Specification algebra-basic-001 version 5.0.5 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:39:18.6578065+00:00"
+    },
+    {
+      "id": "audit-362b4a4a0975404ca5240ccab9232cfd",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.5",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:39:20.6716802+00:00"
+    },
+    {
+      "id": "audit-476303a0e01a4fb2a20b32111e451c33",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-f6f43d346fbc4ff39730fc10532cddf6",
+      "message": "Assessment generated for specification algebra-basic-001 version 5.0.5.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:39:38.2213578+00:00"
+    },
+    {
+      "id": "audit-e68143aa56d94e37ba2421a0394b5572",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-b0fd8ac331ff44dba1559f42f889e0f1",
+      "message": "Assessment review completed with status \u0027passed\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-17T13:39:52.2565604+00:00"
+    },
+    {
+      "id": "audit-388c777e21c5479aaca9fdc4871c8ef2",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-f6f43d346fbc4ff39730fc10532cddf6",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-17T13:39:52.2684562+00:00"
+    },
+    {
+      "id": "audit-250e1a642217482798ec6ab81e64f99f",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.1",
+      "message": "Specification algebra-basic-001 version 5.0.1 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:56:28.8089979+00:00"
+    },
+    {
+      "id": "audit-839f35dd806c4c7e9df4fe9691ecbd6e",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.1",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:56:35.8624953+00:00"
+    },
+    {
+      "id": "audit-d3003e15ab9d4befb19362f5cd6233fc",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-58a35bd19b744550949b5927e365216d",
+      "message": "Assessment generated for specification algebra-basic-001 version 5.0.1.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T13:56:48.9532337+00:00"
+    },
+    {
+      "id": "audit-dadce97850904d9e840850c853bf84a1",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-7c49f5a339f445ff851c42a367c655ae",
+      "message": "Assessment review completed with status \u0027passed\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-17T13:57:01.8632566+00:00"
+    },
+    {
+      "id": "audit-c74117d25f1e486ba222b86f336d6f02",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-58a35bd19b744550949b5927e365216d",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-17T13:57:01.8678388+00:00"
+    },
+    {
+      "id": "audit-e885c37decba4cf1a54cfb5f7a77f7d8",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Specification algebra-basic-001 version 5.0.8 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T14:04:57.7666695+00:00"
+    },
+    {
+      "id": "audit-40d938c7362b4240b7bf6145535c9035",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T14:04:59.407308+00:00"
+    },
+    {
+      "id": "audit-2872e1779a1d4f548bda854175a2449e",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-fd1ea3b3e88c4be0905fcd9d59ac52fb",
+      "message": "Assessment generated for specification algebra-basic-001 version 5.0.8.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-17T14:05:14.101573+00:00"
+    },
+    {
+      "id": "audit-241c1a7608004a9c825ccc34b7dbbc96",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-2f3d4133ee10412bbe09bb0a298f8831",
+      "message": "Assessment review completed with status \u0027passed\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-17T14:05:26.9683299+00:00"
+    },
+    {
+      "id": "audit-21824c6c77fb429aa7af5eb0fb836454",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-fd1ea3b3e88c4be0905fcd9d59ac52fb",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-17T14:05:26.9734327+00:00"
     }
   ]
 }

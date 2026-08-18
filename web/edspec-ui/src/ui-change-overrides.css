@@ -1,0 +1,8 @@
+/* UI change request: unavailable backend areas are removed from navigation. */
+.app aside nav button:nth-child(n+4){display:none}
+.app>main>header strong{font-size:0}
+.app>main>header strong::after{content:'POC workspace';font-size:10px}
+.app .card:not(:has(.detail-head))>h2:first-child{font-size:0}
+.app .card:not(:has(.detail-head))>h2:first-child::after{content:'Create specification';font-size:inherit}
+.app .card:not(:has(.detail-head)) .actions button.primary{font-size:0}.app .card:not(:has(.detail-head)) .actions button.primary::after{content:'Create specification';font-size:12px}
+.spec-version-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-top:18px}.spec-version-card{border:1px solid #e3e8f1;border-radius:10px;padding:16px;background:#fff}.spec-version-card h3{margin:0 0 7px;font-size:15px}.spec-version-card small{display:block;color:#7f8ba0;margin:4px 0}.spec-version-card .row-actions{display:flex;gap:8px;margin-top:14px}.spec-version-card .row-actions button{margin:0;padding:8px 10px;font-size:11px}@media(max-width:700px){.spec-version-grid{grid-template-columns:1fr}}
