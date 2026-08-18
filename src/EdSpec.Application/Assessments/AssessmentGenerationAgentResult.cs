@@ -14,6 +14,10 @@ public interface IAssessmentGenerationAgent
 
 public interface IGeneratedAssessmentRepository
 {
+    Task<IReadOnlyCollection<GeneratedAssessment>> GetAllAsync(CancellationToken cancellationToken);
+
+    Task<GeneratedAssessment?> GetAsync(string id, CancellationToken cancellationToken);
+
     Task<GeneratedAssessment> CreateAsync(GeneratedAssessment assessment, CancellationToken cancellationToken);
 }
 

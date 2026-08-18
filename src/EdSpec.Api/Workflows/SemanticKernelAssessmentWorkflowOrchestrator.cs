@@ -70,6 +70,18 @@ public sealed class SemanticKernelAssessmentWorkflowOrchestrator
         {
             return AssessmentWorkflowResult.BadGateway(exception.Message);
         }
+        catch (Exception exception) when (exception is not OperationCanceledException)
+        {
+            if (exception.Message.Contains("IChatCompletionService", StringComparison.Ordinal))
+            {
+                return AssessmentWorkflowResult.BadGateway(
+                    "Azure OpenAI chat completion is not configured. Set AzureOpenAI:Endpoint, AzureOpenAI:ApiKey, and AzureOpenAI:DeploymentName, then restart the API.");
+            }
+
+            return AssessmentWorkflowResult.BadGateway(
+                "Assessment generation is unavailable. Verify Azure OpenAI configuration and network access.",
+                [exception.Message]);
+        }
 
         var validationResult = _validator.Validate(specification, agentResult.Questions);
         if (!validationResult.IsValid)
@@ -106,6 +118,18 @@ public sealed class SemanticKernelAssessmentWorkflowOrchestrator
         catch (AssessmentGenerationException exception)
         {
             return AssessmentWorkflowResult.BadGateway(exception.Message);
+        }
+        catch (Exception exception) when (exception is not OperationCanceledException)
+        {
+            if (exception.Message.Contains("IChatCompletionService", StringComparison.Ordinal))
+            {
+                return AssessmentWorkflowResult.BadGateway(
+                    "Azure OpenAI chat completion is not configured. Set AzureOpenAI:Endpoint, AzureOpenAI:ApiKey, and AzureOpenAI:DeploymentName, then restart the API.");
+            }
+
+            return AssessmentWorkflowResult.BadGateway(
+                "Assessment review is unavailable. Verify Azure OpenAI configuration and network access.",
+                [exception.Message]);
         }
 
         var savedReview = await _reviewRepository.CreateAsync(review, cancellationToken);

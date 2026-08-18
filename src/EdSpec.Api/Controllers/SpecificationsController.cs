@@ -22,6 +22,19 @@ public sealed partial class SpecificationsController : ControllerBase
         _auditLogRepository = auditLogRepository;
     }
 
+    [HttpGet(Name = "GetSpecifications")]
+    [ProducesResponseType(typeof(IReadOnlyCollection<SpecificationDraft>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<IReadOnlyCollection<SpecificationDraft>>> GetSpecifications(
+        CancellationToken cancellationToken)
+    {
+        var specifications = await _repository.GetAllAsync(cancellationToken);
+
+        return Ok(specifications
+            .OrderBy(specification => specification.Title)
+            .ThenByDescending(specification => specification.UpdatedAt)
+            .ToList());
+    }
+
     [HttpPost("drafts", Name = "CreateDraftSpecification")]
     [ProducesResponseType(typeof(SpecificationDraft), StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -100,6 +113,9 @@ public sealed partial class SpecificationsController : ControllerBase
         }
 
         var now = DateTimeOffset.UtcNow;
+        var approval = string.Equals(existingDraft.Status, "approved", StringComparison.OrdinalIgnoreCase)
+            ? new ApprovalInfo(true, null, null)
+            : existingDraft.Approval;
         var draft = new SpecificationDraft(
             existingDraft.Id,
             existingDraft.Version,
@@ -110,13 +126,49 @@ public sealed partial class SpecificationsController : ControllerBase
             request.QuestionRules.ToDomain(),
             request.DifficultyDistribution.ToDomain(),
             request.ScoringRules.ToDomain(),
-            existingDraft.Approval,
+            approval,
             existingDraft.CreatedAt,
             now);
 
         var savedDraft = await _repository.UpdateAsync(draft, cancellationToken);
 
         return Ok(savedDraft);
+    }
+
+    [HttpDelete("{id}/versions/{version}", Name = "DeleteSpecificationDraft")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteDraft(
+        string id,
+        string version,
+        DeleteSpecificationRequest request,
+        CancellationToken cancellationToken)
+    {
+        var existingDraft = await _repository.GetAsync(id, version, cancellationToken);
+        if (existingDraft is null)
+        {
+            return NotFound(new { message = "Specification was not found." });
+        }
+
+        var deleted = await _repository.DeleteAsync(id, version, cancellationToken);
+        if (!deleted)
+        {
+            return NotFound(new { message = "Specification was not found." });
+        }
+
+        await _auditLogRepository.CreateAsync(
+            new AuditLogEntry(
+                $"audit-{Guid.NewGuid():N}",
+                "specification.deleted",
+                "specification",
+                $"{existingDraft.Id}:{existingDraft.Version}",
+                $"Specification {existingDraft.Id} version {existingDraft.Version} deleted.",
+                request.DeletedBy.Trim(),
+                DateTimeOffset.UtcNow),
+            cancellationToken);
+
+        return NoContent();
     }
 
     [HttpPost("{id}/versions/{version}/approve", Name = "ApproveSpecificationDraft")]
@@ -221,6 +273,9 @@ public sealed record UpdateDraftSpecificationRequest(
 
 public sealed record ApproveSpecificationRequest(
     [Required, MinLength(2)] string ApprovedBy);
+
+public sealed record DeleteSpecificationRequest(
+    [Required, MinLength(2)] string DeletedBy);
 
 public sealed record QuestionRulesRequest(
     [Range(1, 100)] int TotalQuestions,

@@ -96,6 +96,31 @@ public sealed class JsonSpecificationDraftRepository : ISpecificationDraftReposi
         }
     }
 
+    public async Task<bool> DeleteAsync(string id, string version, CancellationToken cancellationToken)
+    {
+        await _lock.WaitAsync(cancellationToken);
+        try
+        {
+            var drafts = await ReadStoreAsync(cancellationToken);
+            var existingIndex = drafts.FindIndex(existing =>
+                string.Equals(existing.Id, id, StringComparison.OrdinalIgnoreCase)
+                && string.Equals(existing.Version, version, StringComparison.OrdinalIgnoreCase));
+
+            if (existingIndex < 0)
+            {
+                return false;
+            }
+
+            drafts.RemoveAt(existingIndex);
+            await WriteStoreAsync(drafts, cancellationToken);
+            return true;
+        }
+        finally
+        {
+            _lock.Release();
+        }
+    }
+
     private async Task<List<SpecificationDraft>> ReadStoreAsync(CancellationToken cancellationToken)
     {
         if (!File.Exists(_filePath))
