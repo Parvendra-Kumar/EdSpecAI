@@ -15,17 +15,22 @@ The frontend must not implement AI behavior, persistence, assessment review logi
 
 | Method | Endpoint | Purpose |
 |---|---|---|
+| GET | `/api/specifications` | List stored specification versions for selection and catalog views |
 | POST | `/api/specifications/drafts` | Create a specification draft |
 | GET | `/api/specifications/{id}/versions/{version}` | Retrieve one specification version |
 | PUT | `/api/specifications/{id}/versions/{version}` | Update an existing draft |
+| DELETE | `/api/specifications/{id}/versions/{version}` | Delete a specification version and write an audit event |
 | POST | `/api/specifications/{id}/versions/{version}/approve` | Approve a specification version |
 | POST | `/api/specifications/{id}/versions/{version}/assessments/generate` | Generate an assessment from an approved specification |
+| GET | `/api/assessments` | List persisted generated-assessment summaries |
+| GET | `/api/assessments/{assessmentId}` | Retrieve a persisted generated assessment |
+| GET | `/api/assessments/{assessmentId}/download` | Download a teacher-facing HTML copy of an assessment |
 
-The UI must not present specification listing, assessment retrieval, review findings, assessment approval/rejection, audit events, or real authentication as working backend features. Static POC placeholders are acceptable.
+The specification list, specification detail/update/delete, assessment list/detail, and assessment download endpoints are implemented. Assessment review is performed by the existing backend workflow and persisted with audit events, but there is no separate review-management screen or real authentication in this local POC.
 
 ## Demo login
 
-Use these local accounts in `src/auth/demoUsers.ts`, with the comment `// Demo-only POC credentials. There is no real authentication in this prototype.`:
+Use these local accounts in `web/edspec-ui/src/App.tsx`, with the comment `// Demo-only POC credentials. There is no real authentication in this prototype.`:
 
 | Email | Password | Demo name | POC use |
 |---|---|---|---|
@@ -44,7 +49,7 @@ Email input, password input, sign-in button, invalid-credentials message, and a 
 
 ### Workspace
 
-Simple shell with the EdSpec title, signed-in demo name, sign-out action, specification workflow navigation, and assessment output navigation. Do not require dashboard counts because no list/statistics endpoints exist.
+Simple shell with the EdSpec title, signed-in demo name, sign-out action, specification workflow navigation, and assessment output navigation. Overview counts remain presentation-only POC values and must not be described as statistics API responses.
 
 ### Create specification
 
@@ -69,7 +74,7 @@ Approval body:
 
 ### Assessment output
 
-Display the generated assessment ID, specification ID/version, status, creator, timestamp, and each returned question with its learning objective, difficulty, type, prompt, options, correct option, and points. Keep the returned assessment in React state for the current session because no assessment GET endpoint exists.
+Display the generated assessment ID, specification ID/version, status, creator, timestamp, and each returned question with its learning objective, difficulty, type, prompt, options, correct option, and points. The Assessments page loads persisted assessment summaries, opens the selected assessment through the GET endpoint, and provides a teacher download action.
 
 ## TypeScript models
 
@@ -144,7 +149,7 @@ src/
 - Assessment generation is disabled until approval and uses `requestedBy`.
 - Returned questions and options render correctly.
 - Backend `400`, `404`, `409`, and `502` responses are visible and understandable.
-- The UI does not claim to call unavailable review, audit, list, delete, or assessment-get APIs.
+- Specification and assessment list/detail/delete/download actions use the implemented backend endpoints; the UI does not expose unavailable review-management or real-authentication features.
 
 ## Incremental change request
 
@@ -158,24 +163,27 @@ Implementation instruction: implement only incremental changes whose status is `
 
 ## UI change request - navigation and specification catalog
 
-- Remove the Review queue and Audit history tabs from the UI because those backend endpoints are not implemented.
+- Remove the Review queue and Audit history tabs from the UI because there are no corresponding user-facing management endpoints.
 - Remove the `Backend authoritative` label from the header; use a neutral `POC workspace` label instead.
 - Rename user-facing `Create draft` labels to `Create specification` while retaining the existing draft API and workflow.
-- Show specification ID, version, title, subject, status, and updated date in a responsive grid/catalog.
-- Add an action on each approved specification to generate an assessment through the existing generate endpoint.
-- Add a View assessments action that opens the generated assessment already held in the current React session.
-- Keep the existing create, load, edit, save, approve, and assessment rendering flow intact.
-- Do not claim that the catalog, assessment view, review queue, or audit history are backed by unavailable list/get/review/audit endpoints. Catalog entries may be POC seed data until a backend list endpoint exists.
+- Show specification ID, version, title, subject, learning objective, status, rules, and updated date in a responsive catalog.
+- Allow a specification to be opened and edited from the catalog. Save updates through the existing PUT workflow and show a success toast.
+- Add a trash-icon delete action using the backend DELETE endpoint and preserve the audit-log pattern.
+- Add an action on approved specifications to generate an assessment through the existing generation endpoint.
+- Add a persisted Assessments page with list, detail, loading, empty, retry, error, and download states.
+- Keep the existing create, load, edit, save, approve, generate, and assessment rendering flow intact.
 
 ## Canonical implementation notes for future developers
 
 ### Layout and navigation
 
-The current UI uses a dark left sidebar and a light content workspace. The sidebar contains only:
+The current UI uses a dark left sidebar and a light content workspace. The sidebar contains:
 
 1. Overview
-2. Specifications
+2. Create Specification
 3. Assessments
+4. Generate assessment
+5. View all Specifications
 
 Review queue and Audit history must not appear in navigation because there are no corresponding working backend endpoints. The header uses the neutral label `POC workspace`; do not display `Backend authoritative` as a user-facing tab or feature.
 
@@ -183,17 +191,21 @@ The Overview screen contains a greeting, New specification button, three summary
 
 ### Specification catalog
 
-Until a specification-list endpoint is implemented, render the supplied POC seed records in a responsive card grid. Each card shows:
+Load stored specification versions through `GET /api/specifications` and render them in a responsive card grid or selection control. Each item shows:
 
 - specification ID;
 - version;
 - title and subject;
 - draft/approved status;
 - last updated date;
-- Open/Load action;
+- question count and total points;
+- Open/Edit action;
+- delete trash icon;
 - `Generate assessment` for approved records only.
 
-The catalog must not invent a GET list API. Use the existing GET-by-ID/version endpoint when opening a record. The generated assessment is stored in React state for the current browser session, and the Assessments navigation opens that result through a `View assessment` action. There is intentionally no assessment GET call.
+Use the existing GET-by-ID/version endpoint when opening a record. Save calls the existing PUT endpoint and updates the list immediately from the API response. Editing an approved specification clears its approval in the backend and returns it to draft status, requiring re-approval before generation. Deletion calls the backend DELETE endpoint with the signed-in user's name as `deletedBy`.
+
+The Assessments navigation calls `GET /api/assessments`, opens a selected record through `GET /api/assessments/{assessmentId}`, and provides `GET /api/assessments/{assessmentId}/download` for a teacher-facing HTML download.
 
 ### User-facing labels and workflow
 
@@ -202,6 +214,8 @@ Use `Create specification` for the creation page heading, navigation/action labe
 1. Save (draft only)
 2. Approve as the signed-in demo user (draft only)
 3. Generate assessment (approved only)
+
+The Generate assessment tab loads stored specifications into a selector, shows the selected specification's question and scoring rules, accepts the requester name, and calls the existing generation endpoint. Only approved versions are selectable. Loading, empty, API failure, retry, and missing-approved-specification states are visible to the user.
 
 Approved fields are read-only. Do not label Save, Approve, or Generate actions as `Create specification`.
 
@@ -267,4 +281,135 @@ After changing `Program.cs`, `vite.config.ts`, or appsettings/user-secrets, stop
 - Added seeded overview/catalog presentation data from the supplied specification records.
 - Added responsive dark-sidebar/light-workspace styling and layout overrides.
 - Added the Vite-to-ASP.NET development proxy and HTTP development profile handling.
-- Preserved the limitation that review, audit, specification-list, and assessment-get APIs are not implemented.
+- Added persisted specification catalog, update, delete, audit, assessment-list, assessment-detail, and download workflows.
+
+## Session implementation update
+
+This section records the implementation completed during the current feature session. It supersedes the earlier POC notes that described specification-list and assessment-get endpoints as unavailable.
+
+### End-to-end functional flow
+
+1. The user signs in with the existing demo identity flow.
+2. The left navigation opens Overview, Create Specification, Assessments, Generate assessment, or View all Specifications in the main content area.
+3. Create Specification sends the form to `POST /api/specifications/drafts`.
+4. View all Specifications loads records dynamically from `GET /api/specifications`. It supports loading, empty, refresh/retry, API error, status display, and specification links.
+5. Opening a specification loads `GET /api/specifications/{id}/versions/{version}`. The editor displays the specification fields, rules, approval details, and timestamps.
+6. Save sends the edited fields to `PUT /api/specifications/{id}/versions/{version}`. The returned record replaces the list/detail state and a success toast displays `Specification saved successfully`.
+7. If an approved specification is edited, the backend clears its approval metadata and changes its status to `draft`. It must be approved again before assessment generation.
+8. The trash icon sends `DELETE /api/specifications/{id}/versions/{version}` with `{ "deletedBy": "<signed-in-user>" }`. The backend persists the deletion and writes `specification.deleted` to the audit log.
+9. Generate assessment loads the same dynamic specification list, enables only approved versions, shows the selected rules, accepts `requestedBy`, and reuses the existing Semantic Kernel/Azure OpenAI workflow.
+10. Assessments loads persisted summaries from `GET /api/assessments`. Selecting an item retrieves its full questions from `GET /api/assessments/{assessmentId}`. The detail view offers a Download assessment link.
+
+### Assessment-generation and Azure OpenAI behavior
+
+The API registers the existing Semantic Kernel workflow and Azure OpenAI chat-completion service when all three settings are available:
+
+```text
+AzureOpenAI:Endpoint
+AzureOpenAI:ApiKey
+AzureOpenAI:DeploymentName
+```
+
+When configuration is missing, the API remains available for specification operations and generation returns a clear `502 Bad Gateway` configuration message instead of failing API startup with an unhandled dependency-injection error. Unexpected generation/review failures are also translated into meaningful 502 responses. API keys must be supplied through user secrets, environment variables, or a secret store and must not be committed to source control.
+
+### Frontend behavior and labels
+
+- The left navigation labels are `Create Specification` and `View all Specifications`.
+- Assessment and specification values are loaded from the backend; the frontend does not use hard-coded catalog values.
+- Assessment and specification pages show loading, empty, refresh/retry, validation, 404, 500, 502, and Azure configuration feedback through the existing error area.
+- Save, create, approve, delete, and generation actions prevent duplicate clicks while busy.
+- Successful actions use the toast styling added for specification saves and related success notifications.
+- The UI keeps the existing dark sidebar/light workspace design and uses the existing relative `/api` paths with Vite proxying to `http://localhost:5246`.
+
+### Tests and builds executed
+
+- `npm run build` in `web/edspec-ui` — passed.
+- `dotnet test EdSpecAI.sln --no-restore -p:UseAppHost=false` — passed: 5 unit tests and 12 integration tests.
+- API smoke check — `GET http://localhost:5246/api/specifications` returned `200 OK`.
+- Frontend smoke check — `http://localhost:5173/src/App.tsx` served the updated navigation, save-toast, delete, and specification-library code.
+
+### Files changed during this implementation
+
+Frontend:
+
+- `web/edspec-ui/src/App.tsx` — navigation, dynamic specification catalog, specification editor/save/delete flow, Generate assessment flow, persisted Assessments list/detail/download flow, loading/error/empty states, and toast notifications.
+- `web/edspec-ui/src/assessment-library.css` — assessment list/detail layout and presentation.
+- `web/edspec-ui/src/generator.css` — Generate assessment page styling.
+- `web/edspec-ui/src/specification-library.css` — specification catalog and editor styling.
+- `web/edspec-ui/src/specification-delete.css` — delete/trash-icon styling.
+- `web/edspec-ui/src/toast.css` — save/success toast styling.
+- `web/edspec-ui/src/ui-change-overrides.css` — removed the rule that hid navigation items after the third item.
+
+Backend API and workflow:
+
+- `src/EdSpec.Api/Controllers/SpecificationsController.cs` — specification list, update approval reset, delete endpoint, validation, and audit event.
+- `src/EdSpec.Api/Controllers/AssessmentsController.cs` — assessment list, detail, download, and generation endpoints.
+- `src/EdSpec.Api/Program.cs` — optional Azure OpenAI/Semantic Kernel registration so missing settings produce a generation-time configuration response.
+- `src/EdSpec.Api/Workflows/SemanticKernelAssessmentWorkflowOrchestrator.cs` — meaningful Azure configuration and unexpected-failure handling.
+- `src/EdSpec.Api/EdSpec.Api.csproj` — development user-secrets support.
+- `src/EdSpec.Application/Assessments/AssessmentGenerationAgentResult.cs` — assessment repository list/detail contracts.
+- `src/EdSpec.Application/Specifications/ISpecificationDraftRepository.cs` — specification delete contract.
+- `src/EdSpec.Infrastructure/Assessments/JsonGeneratedAssessmentRepository.cs` — persisted assessment list/detail reads.
+- `src/EdSpec.Infrastructure/Specifications/JsonSpecificationDraftRepository.cs` — persisted specification deletion.
+
+Tests and persisted POC data:
+
+- `tests/EdSpec.IntegrationTests/Assessments/AssessmentsControllerTests.cs` — assessment list, detail, download, and 502 coverage.
+- `tests/EdSpec.IntegrationTests/Specifications/SpecificationsControllerTests.cs` — list ordering, approved-to-draft update, and delete coverage.
+- `tests/EdSpec.IntegrationTests/Specifications/JsonSpecificationDraftRepositoryTests.cs` — persistence coverage for specification updates.
+- `src/EdSpec.Api/specifications.json` — persisted specification records used by the catalog.
+- `src/EdSpec.Api/assessments.json` — persisted generated assessments used by the Assessments page.
+- `src/EdSpec.Api/assessment-reviews.json` — persisted workflow review results.
+- `src/EdSpec.Api/audit-log.json` — persisted create/update/approve/delete/generation audit events.
+
+Configuration and documentation:
+
+- `artifacts/verify-build/EdSpec.Api/appsettings.json` — verify-build Azure OpenAI configuration shape.
+- `artifacts/verify-build/EdSpec.Api/appsettings.Development.json` — development verify-build configuration shape.
+- `docs/ui-specification.md` — aligned the broader UI specification with the dynamic specification-list endpoint.
+- `docs/poc-frontend-ui-specification.md` — this consolidated implementation record.
+
+The `artifacts/verify-build` settings are environment-specific. Keep real Azure OpenAI credentials out of source control and replace any exposed key immediately.
+
+## Latest UI update: workspace overview and create flow
+
+The following behavior is the current source-of-truth for the latest POC UI changes:
+
+### Workspace overview
+
+- The overview heading is `Workspace overview`; it must not use a personal greeting such as `Good morning, Arti`.
+- Summary cards must represent live application data rather than demo values:
+  - Approved specifications: count records whose status is `approved`.
+  - Assessments generated: count persisted assessment summaries returned by the backend.
+  - Awaiting review: count specification records whose status is `draft`.
+- Summary cards are interactive. Selecting a card navigates to the relevant specification library or Assessments view.
+- Specifications and assessments are loaded when an authenticated demo session starts and are refreshed when the relevant page is opened or manually refreshed.
+- If a request fails, the existing shared error area is used; the UI must not silently replace failed data with fake numbers.
+
+### Create Specification behavior
+
+- The create form must start without hard-coded Algebra, Mathematics, or other sample values.
+- Numeric fields use an empty visual value until the user enters a value. Internal zero values must not be rendered as visible `0` defaults.
+- When Create Specification is opened, the UI loads the latest specification from `GET /api/specifications` and restores its details into the form. The latest record is selected by the greatest `updatedAt` value. This supports continuing work on the most recently edited specification, including a Science specification that has not yet been generated into an assessment.
+- If no specification exists, the form remains empty and the user can create a new record.
+- The restored record is still editable through the existing save/create/approve workflow; no values are persisted only in frontend code.
+- The `Options Per Question` input must respect the backend validation range of 2 through 8. Other validation messages must remain visible in the shared request error area.
+
+### Visual and accessibility guidance
+
+- Preserve the dark sidebar and light workspace visual system.
+- Use the application font consistently for buttons, labels, cards, inputs, and navigation.
+- Summary cards use keyboard-accessible buttons, visible hover/focus affordances, and concise supporting text.
+- Keep the responsive layout: summary cards collapse for narrow screens, content remains readable, and sidebar navigation remains usable.
+- Avoid hard-coded activity counts, specification titles, IDs, versions, or assessment names in production-facing dashboard components. Demo content should be clearly identified if retained for the POC.
+
+### Latest frontend files
+
+- `web/edspec-ui/src/App.tsx` — live overview counts/card navigation, workspace heading, empty create form, and latest-specification restoration.
+- `web/edspec-ui/src/dashboard-enhancements.css` — overview card hover states, live summary-card styling, spacing, and responsive polish.
+
+### Verification notes
+
+- After changing the frontend, restart Vite if required and hard-refresh the browser with `Ctrl+Shift+R`.
+- Verify `GET /api/specifications` and `GET /api/assessments` in the browser Network panel.
+- Confirm that the overview numbers match the response data, clicking each summary card changes the view, and opening Create Specification restores the latest edited specification rather than Algebra defaults.

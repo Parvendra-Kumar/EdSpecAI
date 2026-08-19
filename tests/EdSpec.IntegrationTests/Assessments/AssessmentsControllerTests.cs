@@ -7,6 +7,7 @@ using EdSpec.Domain.Assessments;
 using EdSpec.Domain.Audit;
 using EdSpec.Domain.Specifications;
 using EdSpec.Validation.Assessments;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EdSpec.IntegrationTests.Assessments;
@@ -62,21 +63,87 @@ public sealed class AssessmentsControllerTests
         Assert.Single(repository.Assessments);
     }
 
+    [Fact]
+    public async Task Generate_ReturnsBadGateway_WhenGenerationAgentThrowsUnexpectedException()
+    {
+        var controller = CreateController(
+            CreateSpecification("approved"),
+            generationAgent: new UnexpectedFailureAssessmentGenerationAgent());
+
+        var result = await controller.Generate(
+            "sample-topic-assessment",
+            "1.0.0",
+            new GenerateAssessmentRequest("POC User"),
+            CancellationToken.None);
+
+        var response = Assert.IsType<ObjectResult>(result.Result);
+        Assert.Equal(StatusCodes.Status502BadGateway, response.StatusCode);
+    }
+
+    [Fact]
+    public async Task GetAll_ReturnsAssessmentSummariesOrderedByCreatedAt()
+    {
+        var repository = new FakeGeneratedAssessmentRepository();
+        repository.Assessments.Add(CreateAssessment("assessment-old", DateTimeOffset.UtcNow.AddMinutes(-5)));
+        repository.Assessments.Add(CreateAssessment("assessment-new", DateTimeOffset.UtcNow));
+        var controller = CreateController(CreateSpecification("approved"), repository);
+
+        var result = await controller.GetAll(CancellationToken.None);
+
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        var summaries = Assert.IsAssignableFrom<IReadOnlyCollection<AssessmentListItem>>(okResult.Value);
+        Assert.Equal(["assessment-new", "assessment-old"], summaries.Select(summary => summary.Id));
+        Assert.Equal(1, summaries.First().QuestionCount);
+        Assert.Equal(2, summaries.First().TotalPoints);
+    }
+
+    [Fact]
+    public async Task Get_ReturnsAssessment_WhenItExists()
+    {
+        var repository = new FakeGeneratedAssessmentRepository();
+        var assessment = CreateAssessment("assessment-1", DateTimeOffset.UtcNow);
+        repository.Assessments.Add(assessment);
+        var controller = CreateController(CreateSpecification("approved"), repository);
+
+        var result = await controller.Get(assessment.Id, CancellationToken.None);
+
+        var okResult = Assert.IsType<OkObjectResult>(result.Result);
+        Assert.Same(assessment, okResult.Value);
+    }
+
+    [Fact]
+    public async Task Download_ReturnsHtmlFile_WhenAssessmentExists()
+    {
+        var repository = new FakeGeneratedAssessmentRepository();
+        var assessment = CreateAssessment("assessment-download", DateTimeOffset.UtcNow);
+        repository.Assessments.Add(assessment);
+        var controller = CreateController(CreateSpecification("approved"), repository);
+
+        var result = await controller.Download(assessment.Id, CancellationToken.None);
+
+        var fileResult = Assert.IsType<FileContentResult>(result);
+        Assert.Equal("text/html", fileResult.ContentType);
+        Assert.Equal("assessment-download.html", fileResult.FileDownloadName);
+        Assert.Contains("Correct answer", System.Text.Encoding.UTF8.GetString(fileResult.FileContents));
+    }
+
     private static AssessmentsController CreateController(
         SpecificationDraft? specification,
-        FakeGeneratedAssessmentRepository? assessmentRepository = null)
+        FakeGeneratedAssessmentRepository? assessmentRepository = null,
+        IAssessmentGenerationAgent? generationAgent = null)
     {
         var auditRepository = new FakeAuditLogRepository();
+        var repository = assessmentRepository ?? new FakeGeneratedAssessmentRepository();
         var orchestrator = new SemanticKernelAssessmentWorkflowOrchestrator(
             new FakeSpecificationDraftRepository(specification),
-            assessmentRepository ?? new FakeGeneratedAssessmentRepository(),
+            repository,
             new FakeAssessmentReviewRepository(),
             auditRepository,
-            new FakeAssessmentGenerationAgent(),
+            generationAgent ?? new FakeAssessmentGenerationAgent(),
             new FakeAssessmentReviewAgent(),
             new GeneratedAssessmentValidator());
 
-        return new AssessmentsController(orchestrator);
+        return new AssessmentsController(orchestrator, repository);
     }
 
     private static SpecificationDraft CreateSpecification(string status)
@@ -94,6 +161,31 @@ public sealed class AssessmentsControllerTests
             new ApprovalInfo(true, "Reviewer", DateTimeOffset.UtcNow),
             DateTimeOffset.UtcNow,
             DateTimeOffset.UtcNow);
+    }
+
+    private static GeneratedAssessment CreateAssessment(string id, DateTimeOffset createdAt)
+    {
+        return new GeneratedAssessment(
+            id,
+            "sample-topic-assessment",
+            "1.0.0",
+            "generated",
+            [
+                new GeneratedQuestion(
+                    "q1",
+                    "Demonstrate understanding of the approved topic",
+                    "easy",
+                    "multiple-choice",
+                    "Which option best matches the approved topic?",
+                    [
+                        new GeneratedOption("A", "The correct concept"),
+                        new GeneratedOption("B", "A distractor")
+                    ],
+                    "A",
+                    2)
+            ],
+            "POC User",
+            createdAt);
     }
 
     private sealed class FakeSpecificationDraftRepository(SpecificationDraft? specification) : ISpecificationDraftRepository
@@ -118,11 +210,26 @@ public sealed class AssessmentsControllerTests
         {
             return Task.FromResult(draft);
         }
+
+        public Task<bool> DeleteAsync(string id, string version, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(false);
+        }
     }
 
     private sealed class FakeGeneratedAssessmentRepository : IGeneratedAssessmentRepository
     {
         public List<GeneratedAssessment> Assessments { get; } = [];
+
+        public Task<IReadOnlyCollection<GeneratedAssessment>> GetAllAsync(CancellationToken cancellationToken)
+        {
+            return Task.FromResult<IReadOnlyCollection<GeneratedAssessment>>(Assessments);
+        }
+
+        public Task<GeneratedAssessment?> GetAsync(string id, CancellationToken cancellationToken)
+        {
+            return Task.FromResult(Assessments.FirstOrDefault(assessment => assessment.Id == id));
+        }
 
         public Task<GeneratedAssessment> CreateAsync(GeneratedAssessment assessment, CancellationToken cancellationToken)
         {
@@ -170,6 +277,16 @@ public sealed class AssessmentsControllerTests
             ];
 
             return Task.FromResult(new AssessmentGenerationAgentResult(questions));
+        }
+    }
+
+    private sealed class UnexpectedFailureAssessmentGenerationAgent : IAssessmentGenerationAgent
+    {
+        public Task<AssessmentGenerationAgentResult> GenerateAsync(
+            SpecificationDraft specification,
+            CancellationToken cancellationToken)
+        {
+            throw new InvalidOperationException("Simulated Azure OpenAI failure.");
         }
     }
 

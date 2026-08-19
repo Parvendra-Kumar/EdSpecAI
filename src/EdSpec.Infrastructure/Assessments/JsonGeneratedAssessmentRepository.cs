@@ -19,6 +19,34 @@ public sealed class JsonGeneratedAssessmentRepository : IGeneratedAssessmentRepo
         _filePath = Path.Combine(applicationRootPath, "assessments.json");
     }
 
+    public async Task<IReadOnlyCollection<GeneratedAssessment>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        await _lock.WaitAsync(cancellationToken);
+        try
+        {
+            return await ReadStoreAsync(cancellationToken);
+        }
+        finally
+        {
+            _lock.Release();
+        }
+    }
+
+    public async Task<GeneratedAssessment?> GetAsync(string id, CancellationToken cancellationToken)
+    {
+        await _lock.WaitAsync(cancellationToken);
+        try
+        {
+            var assessments = await ReadStoreAsync(cancellationToken);
+            return assessments.FirstOrDefault(assessment =>
+                string.Equals(assessment.Id, id, StringComparison.OrdinalIgnoreCase));
+        }
+        finally
+        {
+            _lock.Release();
+        }
+    }
+
     public async Task<GeneratedAssessment> CreateAsync(GeneratedAssessment assessment, CancellationToken cancellationToken)
     {
         await _lock.WaitAsync(cancellationToken);

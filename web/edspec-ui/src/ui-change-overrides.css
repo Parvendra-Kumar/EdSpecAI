@@ -1,5 +1,4 @@
 /* UI change request: unavailable backend areas are removed from navigation. */
-.app aside nav button:nth-child(n+4){display:none}
 .app>main>header strong{font-size:0}
 .app>main>header strong::after{content:'POC workspace';font-size:10px}
 .app .card:not(:has(.detail-head))>h2:first-child{font-size:0}

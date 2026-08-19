@@ -11,4 +11,6 @@ public interface ISpecificationDraftRepository
     Task<SpecificationDraft> CreateAsync(SpecificationDraft draft, CancellationToken cancellationToken);
 
     Task<SpecificationDraft> UpdateAsync(SpecificationDraft draft, CancellationToken cancellationToken);
+
+    Task<bool> DeleteAsync(string id, string version, CancellationToken cancellationToken);
 }

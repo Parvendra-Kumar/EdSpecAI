@@ -136,6 +136,14 @@ Correct options should be visually marked, but the UI must not change the backen
 
 The API base URL must be configurable, for example `VITE_API_BASE_URL`. Do not hard-code a production URL.
 
+### List specifications
+
+```http
+GET /api/specifications
+```
+
+Success: `200 OK`, response body is the stored specification versions. The UI may use this endpoint to populate specification catalogs and assessment-generation selectors. Draft versions remain visible for context but cannot be used for generation until approved.
+
 ### Create draft
 
 ```http
@@ -310,5 +318,4 @@ The architecture document describes review findings, assessment approval/rejecti
 - Run independent Review Agent and retrieve findings.
 - Approve or reject an assessment.
 - Retrieve audit events.
-- List specification versions.
 

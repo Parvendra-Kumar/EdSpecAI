@@ -224,6 +224,420 @@
       "message": "Semantic Kernel assessment workflow completed.",
       "actor": "Semantic Kernel Orchestrator",
       "createdAt": "2026-08-17T14:05:26.9734327+00:00"
+    },
+    {
+      "id": "audit-9001c124bcb945058af48e25da6f3dc3",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "gravity:1.0.0",
+      "message": "Specification gravity version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T08:50:43.4804696+00:00"
+    },
+    {
+      "id": "audit-91a3faf82b964b33b9e4f3adac10227a",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:24:28.801845+00:00"
+    },
+    {
+      "id": "audit-c4f547fd4dba46da84e66aca297a4ad3",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:25:42.8305676+00:00"
+    },
+    {
+      "id": "audit-377eb1e3e8c54a8e85741d90ad9e4f91",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:29:16.2932497+00:00"
+    },
+    {
+      "id": "audit-76879883f1574cd0a1b1b858a5c4ed8f",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:30:31.3106273+00:00"
+    },
+    {
+      "id": "audit-5de582dce7b244379bea69a365ae00c5",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "gravity:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:33:01.372832+00:00"
+    },
+    {
+      "id": "audit-e39fca8af67a438989d1ff6d97974d70",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "gravity:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:33:02.7530617+00:00"
+    },
+    {
+      "id": "audit-298dff1e4b3d4d6286947ff573f71e20",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:39:50.3217849+00:00"
+    },
+    {
+      "id": "audit-b621672fd44e41fba7b1e3027078e72e",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "gravity:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:40:58.1736926+00:00"
+    },
+    {
+      "id": "audit-284005e0368d46d4ab9ca9ef336eb6ad",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:50:18.1464747+00:00"
+    },
+    {
+      "id": "audit-08412478acdd4dec8d18fb3b34914cf6",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:50:19.2002977+00:00"
+    },
+    {
+      "id": "audit-6689b5e8d76d4e6db7a8e3af1d0556f3",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T09:50:27.3424099+00:00"
+    },
+    {
+      "id": "audit-463b5ca085824df7886cf81b7910c8dc",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:00:33.6145894+00:00"
+    },
+    {
+      "id": "audit-fdf2aa9c3b3e43faa377d33e0003c778",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:01:35.9633811+00:00"
+    },
+    {
+      "id": "audit-414998ada1064cf1984bbb8ed0ac7264",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:01:43.904131+00:00"
+    },
+    {
+      "id": "audit-496cb5f766454641b238445eaf82b804",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:03:00.0743363+00:00"
+    },
+    {
+      "id": "audit-cf39ca5919744cd987369c77ca4c4245",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.8",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:18:05.5976292+00:00"
+    },
+    {
+      "id": "audit-0e700987eca64b07828e48df5ae0eee2",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Specification algebra-basic-001 version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:19:02.0904065+00:00"
+    },
+    {
+      "id": "audit-dda4787c212e4117a3b30e1dba146426",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:19:03.350332+00:00"
+    },
+    {
+      "id": "audit-ea0a35f9fe704ef6bb148d76a618161a",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:20:27.3924314+00:00"
+    },
+    {
+      "id": "audit-8aba8e46444a4268ba6037c8eac31b1b",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:20:58.1771245+00:00"
+    },
+    {
+      "id": "audit-891e4cd3525a42e0b831dd5b75c5e11b",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:23:29.9660309+00:00"
+    },
+    {
+      "id": "audit-3eafe5bf899f4481a019d3dcbc14c889",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:24:35.579708+00:00"
+    },
+    {
+      "id": "audit-cdac03813f1b45959ebe5954f0519664",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:24:42.3063083+00:00"
+    },
+    {
+      "id": "audit-58714970fe684db8aa04aa9c7f5a1906",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:44:04.6014632+00:00"
+    },
+    {
+      "id": "audit-cd164698aed84973b34d6f520b39152f",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-61445bd8a4d54ce69ce9cf580fd820c0",
+      "message": "Assessment generated for specification algebra-basic-001 version 1.0.0.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:44:22.8589117+00:00"
+    },
+    {
+      "id": "audit-da297adb27754f59803a612a75afd91d",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-f17bccee8ce54172badeb28d01743442",
+      "message": "Assessment review completed with status \u0027passed\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-18T10:44:37.850427+00:00"
+    },
+    {
+      "id": "audit-4e262f8ea64e477da7e2bade194aa636",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-61445bd8a4d54ce69ce9cf580fd820c0",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-18T10:44:37.8523349+00:00"
+    },
+    {
+      "id": "audit-7d1cb2d995ab4cda94ab1a92bdac2650",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "gravity:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:45:11.029951+00:00"
+    },
+    {
+      "id": "audit-a62e3811f9d24bbda5f29c6f0dc51a9e",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-c2aa660428474f54b18a1ebdcd43a428",
+      "message": "Assessment generated for specification gravity version 1.0.0.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T10:45:28.6517744+00:00"
+    },
+    {
+      "id": "audit-ea30ddbaf1ba4e67a19418688024b6dc",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-b372f3c1a9b64713af1adf278d262361",
+      "message": "Assessment review completed with status \u0027passed\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-18T10:45:48.4392557+00:00"
+    },
+    {
+      "id": "audit-af7ef2415c5c4fccae18de5ef2831728",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-c2aa660428474f54b18a1ebdcd43a428",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-18T10:45:48.4411582+00:00"
+    },
+    {
+      "id": "audit-82d98d5953534b1aaa9837518ef358c6",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "points-and-interaction-test:1.0.0",
+      "message": "Specification points-and-interaction-test version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T11:09:37.255627+00:00"
+    },
+    {
+      "id": "audit-ea02745a95004a2fb7c61d63e7cbff16",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "polynomials:1.0.0",
+      "message": "Specification polynomials version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T11:27:20.6755565+00:00"
+    },
+    {
+      "id": "audit-a072c37a96984e429f7cb4a439e33804",
+      "eventType": "semantic-kernel.workflow.started",
+      "entityType": "specification",
+      "entityId": "polynomials:1.0.0",
+      "message": "Semantic Kernel assessment workflow started.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T11:27:22.2915849+00:00"
+    },
+    {
+      "id": "audit-82da1d304a6b45cab6bcce87febcb5a6",
+      "eventType": "assessment.generated",
+      "entityType": "assessment",
+      "entityId": "assessment-adbd9502024e49e5a568e7587fb3894d",
+      "message": "Assessment generated for specification polynomials version 1.0.0.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T11:27:43.3304523+00:00"
+    },
+    {
+      "id": "audit-a62021e48592477cae3bfb6606b4eb3d",
+      "eventType": "assessment.reviewed",
+      "entityType": "assessment-review",
+      "entityId": "review-1437319c67dc4354a23101357ecc44a7",
+      "message": "Assessment review completed with status \u0027needs_revision\u0027.",
+      "actor": "Assessment Review Agent",
+      "createdAt": "2026-08-18T11:28:07.3069321+00:00"
+    },
+    {
+      "id": "audit-07eacb990423445fb4df2144255ad80f",
+      "eventType": "semantic-kernel.workflow.completed",
+      "entityType": "assessment",
+      "entityId": "assessment-adbd9502024e49e5a568e7587fb3894d",
+      "message": "Semantic Kernel assessment workflow completed.",
+      "actor": "Semantic Kernel Orchestrator",
+      "createdAt": "2026-08-18T11:28:07.3134078+00:00"
+    },
+    {
+      "id": "audit-ee66c67f7e004867a8446282d8eb015d",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "points-and-interaction:1.0.0",
+      "message": "Specification points-and-interaction version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:02:03.0782931+00:00"
+    },
+    {
+      "id": "audit-eaed03c458e945cfa985bd4db8389e7c",
+      "eventType": "specification.deleted",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001-112:5.0.1",
+      "message": "Specification algebra-basic-001-112 version 5.0.1 deleted.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:45:26.116315+00:00"
+    },
+    {
+      "id": "audit-81a477b0546b4cac9eda946c640f16ae",
+      "eventType": "specification.deleted",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001-333:5.0.1",
+      "message": "Specification algebra-basic-001-333 version 5.0.1 deleted.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:45:29.3869897+00:00"
+    },
+    {
+      "id": "audit-363b5dfd745d4a49a59b6da04e08f047",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "points-and-interaction-test:1.0.0",
+      "message": "Specification points-and-interaction-test version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:47:54.3104004+00:00"
+    },
+    {
+      "id": "audit-fdd321af31754d14933d51096d13b695",
+      "eventType": "specification.deleted",
+      "entityType": "specification",
+      "entityId": "algebra-basic:1.0.0",
+      "message": "Specification algebra-basic version 1.0.0 deleted.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:57:26.7483143+00:00"
+    },
+    {
+      "id": "audit-12d600174f76439791b8faa2d7f48a4f",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "algebra-basic-001:5.0.7",
+      "message": "Specification algebra-basic-001 version 5.0.7 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:57:50.1153573+00:00"
+    },
+    {
+      "id": "audit-6c455a88daab4101bb427e541e75094a",
+      "eventType": "specification.deleted",
+      "entityType": "specification",
+      "entityId": "polynomials:1.0.0",
+      "message": "Specification polynomials version 1.0.0 deleted.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T12:59:44.5610264+00:00"
+    },
+    {
+      "id": "audit-e337260eb31c4060b6249cb8f39d28f1",
+      "eventType": "specification.approved",
+      "entityType": "specification",
+      "entityId": "science-basic-001:1.0.0",
+      "message": "Specification science-basic-001 version 1.0.0 approved.",
+      "actor": "Demo Teacher",
+      "createdAt": "2026-08-18T13:35:45.5727091+00:00"
     }
   ]
 }

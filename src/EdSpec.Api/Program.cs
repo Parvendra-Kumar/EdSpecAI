@@ -23,21 +23,24 @@ builder.Services.AddSingleton<IAssessmentReviewRepository>(_ =>
 builder.Services.AddSingleton<IAuditLogRepository>(_ =>
     new JsonAuditLogRepository(builder.Environment.ContentRootPath));
 builder.Services.AddSingleton<GeneratedAssessmentValidator>();
+var azureOpenAiEndpoint = builder.Configuration["AzureOpenAI:Endpoint"];
+var azureOpenAiApiKey = builder.Configuration["AzureOpenAI:ApiKey"];
+var azureOpenAiDeploymentName = builder.Configuration["AzureOpenAI:DeploymentName"];
+var azureOpenAiIsConfigured = !string.IsNullOrWhiteSpace(azureOpenAiEndpoint)
+    && !string.IsNullOrWhiteSpace(azureOpenAiApiKey)
+    && !string.IsNullOrWhiteSpace(azureOpenAiDeploymentName);
+
 builder.Services.AddSingleton(_ =>
 {
-    var endpoint = builder.Configuration["AzureOpenAI:Endpoint"];
-    var apiKey = builder.Configuration["AzureOpenAI:ApiKey"];
-    var deploymentName = builder.Configuration["AzureOpenAI:DeploymentName"];
-
-    if (string.IsNullOrWhiteSpace(endpoint)
-        || string.IsNullOrWhiteSpace(apiKey)
-        || string.IsNullOrWhiteSpace(deploymentName))
+    if (!azureOpenAiIsConfigured)
     {
-        throw new InvalidOperationException("AzureOpenAI:Endpoint, AzureOpenAI:ApiKey, and AzureOpenAI:DeploymentName are required.");
+        // Keep the API available for specification workflows. The assessment workflow
+        // reports a 502 with setup guidance when it tries to use this empty kernel.
+        return Kernel.CreateBuilder().Build();
     }
 
     var kernelBuilder = Kernel.CreateBuilder();
-    kernelBuilder.AddAzureOpenAIChatCompletion(deploymentName, endpoint, apiKey);
+    kernelBuilder.AddAzureOpenAIChatCompletion(azureOpenAiDeploymentName!, azureOpenAiEndpoint!, azureOpenAiApiKey!);
 
     return kernelBuilder.Build();
 });
