@@ -1,152 +1,7 @@
 {
   "assessments": [
     {
-      "id": "assessment-d07f88f1e74c45f28cf6472221844378",
-      "specificationId": "algebra-basic",
-      "specificationVersion": "1.0.0",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3x \u002B 5 = 11.",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 2"
-            },
-            {
-              "id": "B",
-              "text": "x = -2"
-            },
-            {
-              "id": "C",
-              "text": "x = 6"
-            },
-            {
-              "id": "D",
-              "text": "x = 1/2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x - 4 = 10.",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 3"
-            },
-            {
-              "id": "B",
-              "text": "x = 7"
-            },
-            {
-              "id": "C",
-              "text": "x = -7"
-            },
-            {
-              "id": "D",
-              "text": "x = 14"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 4(x - 2) = 3x \u002B 5.",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 13"
-            },
-            {
-              "id": "B",
-              "text": "x = -13"
-            },
-            {
-              "id": "C",
-              "text": "x = 1"
-            },
-            {
-              "id": "D",
-              "text": "x = 8"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (x/3) \u002B 5 = 2x - 4.",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 27/5"
-            },
-            {
-              "id": "B",
-              "text": "x = 5"
-            },
-            {
-              "id": "C",
-              "text": "x = -27/5"
-            },
-            {
-              "id": "D",
-              "text": "x = 9/5"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 5 - (2x \u002B 3)/4 = (x - 1)/2.",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 19/4"
-            },
-            {
-              "id": "B",
-              "text": "x = 7/4"
-            },
-            {
-              "id": "C",
-              "text": "x = -19/4"
-            },
-            {
-              "id": "D",
-              "text": "x = 1/4"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        }
-      ],
-      "createdBy": "POC User",
-      "createdAt": "2026-08-17T04:45:00.4482291+00:00"
-    },
-    {
-      "id": "assessment-f27f4dca4ff949318c7792e3d894f39e",
+      "id": "assessment-2cfdda2e3f0f41789ea77a3586fbd439",
       "specificationId": "science-basic",
       "specificationVersion": "1.0.0",
       "status": "generated",
@@ -156,11 +11,92 @@
           "learningObjective": "Solve the simple motion questions.",
           "difficulty": "easy",
           "questionType": "multiple-choice",
-          "prompt": "A car travels 60 kilometers in 2 hours. What is its average speed?",
+          "prompt": "A car travels 150 km in 3 hours. What is its average speed?",
           "options": [
             {
               "id": "A",
+              "text": "50 km/h"
+            },
+            {
+              "id": "B",
+              "text": "45 km/h"
+            },
+            {
+              "id": "C",
+              "text": "75 km/h"
+            },
+            {
+              "id": "D",
               "text": "30 km/h"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q2",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "easy",
+          "questionType": "multiple-choice",
+          "prompt": "A runner moves at a constant speed of 10 m/s. How long does it take to cover 100 m?",
+          "options": [
+            {
+              "id": "A",
+              "text": "10 s"
+            },
+            {
+              "id": "B",
+              "text": "0.1 s"
+            },
+            {
+              "id": "C",
+              "text": "100 s"
+            },
+            {
+              "id": "D",
+              "text": "1 s"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q3",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "A vehicle starts from rest and accelerates at 2 m/s^2 for 5 seconds. What is its speed after 5 seconds?",
+          "options": [
+            {
+              "id": "A",
+              "text": "10 m/s"
+            },
+            {
+              "id": "B",
+              "text": "2.5 m/s"
+            },
+            {
+              "id": "C",
+              "text": "7 m/s"
+            },
+            {
+              "id": "D",
+              "text": "15 m/s"
+            }
+          ],
+          "correctOptionId": "A",
+          "points": 2
+        },
+        {
+          "id": "q4",
+          "learningObjective": "Solve the simple motion questions.",
+          "difficulty": "medium",
+          "questionType": "multiple-choice",
+          "prompt": "A car travels 60 km in the first hour and 90 km in the second hour. What is its average speed over the two hours?",
+          "options": [
+            {
+              "id": "A",
+              "text": "75 km/h"
             },
             {
               "id": "B",
@@ -168,95 +104,14 @@
             },
             {
               "id": "C",
-              "text": "120 km/h"
+              "text": "90 km/h"
             },
             {
               "id": "D",
-              "text": "20 km/h"
+              "text": "72 km/h"
             }
           ],
           "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve the simple motion questions.",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "A runner moves at a constant speed of 5 m/s for 10 seconds. How far does the runner travel?",
-          "options": [
-            {
-              "id": "A",
-              "text": "50 m"
-            },
-            {
-              "id": "B",
-              "text": "500 m"
-            },
-            {
-              "id": "C",
-              "text": "15 m"
-            },
-            {
-              "id": "D",
-              "text": "0.5 m"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve the simple motion questions.",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "A car accelerates uniformly from rest to 20 m/s in 10 seconds. What is the car\u0027s acceleration?",
-          "options": [
-            {
-              "id": "A",
-              "text": "2 m/s\u00B2"
-            },
-            {
-              "id": "B",
-              "text": "0.5 m/s\u00B2"
-            },
-            {
-              "id": "C",
-              "text": "200 m/s\u00B2"
-            },
-            {
-              "id": "D",
-              "text": "10 m/s\u00B2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve the simple motion questions.",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Two trains are 250 km apart and move toward each other. One train travels at 40 km/h and the other at 60 km/h. How long until they meet?",
-          "options": [
-            {
-              "id": "A",
-              "text": "2 hours"
-            },
-            {
-              "id": "B",
-              "text": "2.5 hours"
-            },
-            {
-              "id": "C",
-              "text": "4 hours"
-            },
-            {
-              "id": "D",
-              "text": "1.5 hours"
-            }
-          ],
-          "correctOptionId": "B",
           "points": 2
         },
         {
@@ -264,901 +119,31 @@
           "learningObjective": "Solve the simple motion questions.",
           "difficulty": "hard",
           "questionType": "multiple-choice",
-          "prompt": "A ball is thrown vertically upward with an initial speed of 20 m/s. Neglect air resistance and use g = 10 m/s\u00B2. What maximum height does the ball reach above the launch point?",
+          "prompt": "A car slows uniformly from 30 m/s to 10 m/s in 5 seconds. How far does it travel during this time?",
           "options": [
             {
               "id": "A",
-              "text": "10 m"
+              "text": "100 m"
             },
             {
               "id": "B",
-              "text": "20 m"
+              "text": "50 m"
             },
             {
               "id": "C",
-              "text": "40 m"
+              "text": "80 m"
             },
             {
               "id": "D",
-              "text": "2 m"
+              "text": "120 m"
             }
           ],
-          "correctOptionId": "B",
+          "correctOptionId": "A",
           "points": 2
         }
       ],
       "createdBy": "POC User",
-      "createdAt": "2026-08-17T04:52:26.4212684+00:00"
-    },
-    {
-      "id": "assessment-f6f43d346fbc4ff39730fc10532cddf6",
-      "specificationId": "algebra-basic-001",
-      "specificationVersion": "5.0.5",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x \u002B 3 = 11",
-          "options": [
-            {
-              "id": "A",
-              "text": "4"
-            },
-            {
-              "id": "B",
-              "text": "2"
-            },
-            {
-              "id": "C",
-              "text": "-4"
-            },
-            {
-              "id": "D",
-              "text": "8"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3x = 9",
-          "options": [
-            {
-              "id": "A",
-              "text": "6"
-            },
-            {
-              "id": "B",
-              "text": "3"
-            },
-            {
-              "id": "C",
-              "text": "0"
-            },
-            {
-              "id": "D",
-              "text": "-3"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3(x - 2) \u002B 4 = 16",
-          "options": [
-            {
-              "id": "A",
-              "text": "6"
-            },
-            {
-              "id": "B",
-              "text": "4"
-            },
-            {
-              "id": "C",
-              "text": "8"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (1/2)x - 3 = 4",
-          "options": [
-            {
-              "id": "A",
-              "text": "7"
-            },
-            {
-              "id": "B",
-              "text": "14"
-            },
-            {
-              "id": "C",
-              "text": "-14"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (3/4)x - 5 = (1/2)x \u002B 7",
-          "options": [
-            {
-              "id": "A",
-              "text": "12"
-            },
-            {
-              "id": "B",
-              "text": "48"
-            },
-            {
-              "id": "C",
-              "text": "-48"
-            },
-            {
-              "id": "D",
-              "text": "24"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-17T13:39:38.2042425+00:00"
-    },
-    {
-      "id": "assessment-58a35bd19b744550949b5927e365216d",
-      "specificationId": "algebra-basic-001",
-      "specificationVersion": "5.0.1",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x \u002B 3 = 7.",
-          "options": [
-            {
-              "id": "A",
-              "text": "1"
-            },
-            {
-              "id": "B",
-              "text": "2"
-            },
-            {
-              "id": "C",
-              "text": "3"
-            },
-            {
-              "id": "D",
-              "text": "4"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 5x = 20.",
-          "options": [
-            {
-              "id": "A",
-              "text": "2"
-            },
-            {
-              "id": "B",
-              "text": "3"
-            },
-            {
-              "id": "C",
-              "text": "4"
-            },
-            {
-              "id": "D",
-              "text": "5"
-            }
-          ],
-          "correctOptionId": "C",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3(x - 2) = 9.",
-          "options": [
-            {
-              "id": "A",
-              "text": "3"
-            },
-            {
-              "id": "B",
-              "text": "5"
-            },
-            {
-              "id": "C",
-              "text": "7"
-            },
-            {
-              "id": "D",
-              "text": "6"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (1/2)x \u002B 3 = 7.",
-          "options": [
-            {
-              "id": "A",
-              "text": "4"
-            },
-            {
-              "id": "B",
-              "text": "6"
-            },
-            {
-              "id": "C",
-              "text": "8"
-            },
-            {
-              "id": "D",
-              "text": "16"
-            }
-          ],
-          "correctOptionId": "C",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3(2x - 1) - 4(x \u002B 5) = 2 - (x/2).",
-          "options": [
-            {
-              "id": "A",
-              "text": "5"
-            },
-            {
-              "id": "B",
-              "text": "10"
-            },
-            {
-              "id": "C",
-              "text": "15"
-            },
-            {
-              "id": "D",
-              "text": "20"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-17T13:56:48.9442252+00:00"
-    },
-    {
-      "id": "assessment-fd1ea3b3e88c4be0905fcd9d59ac52fb",
-      "specificationId": "algebra-basic-001",
-      "specificationVersion": "5.0.8",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x \u002B 3 = 11.",
-          "options": [
-            {
-              "id": "A",
-              "text": "3"
-            },
-            {
-              "id": "B",
-              "text": "4"
-            },
-            {
-              "id": "C",
-              "text": "5"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: x/5 = 7.",
-          "options": [
-            {
-              "id": "A",
-              "text": "7"
-            },
-            {
-              "id": "B",
-              "text": "12"
-            },
-            {
-              "id": "C",
-              "text": "35"
-            },
-            {
-              "id": "D",
-              "text": "-35"
-            }
-          ],
-          "correctOptionId": "C",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 3(x - 2) = 2x \u002B 9.",
-          "options": [
-            {
-              "id": "A",
-              "text": "-15"
-            },
-            {
-              "id": "B",
-              "text": "15"
-            },
-            {
-              "id": "C",
-              "text": "3"
-            },
-            {
-              "id": "D",
-              "text": "-3"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 4x \u002B 1 = -2x \u002B 11.",
-          "options": [
-            {
-              "id": "A",
-              "text": "5/3"
-            },
-            {
-              "id": "B",
-              "text": "-5/3"
-            },
-            {
-              "id": "C",
-              "text": "3/5"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (2/3)x - (1/4)(x \u002B 2) = 3.",
-          "options": [
-            {
-              "id": "A",
-              "text": "21/5"
-            },
-            {
-              "id": "B",
-              "text": "8"
-            },
-            {
-              "id": "C",
-              "text": "8.2"
-            },
-            {
-              "id": "D",
-              "text": "42/5"
-            }
-          ],
-          "correctOptionId": "D",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-17T14:05:14.0938087+00:00"
-    },
-    {
-      "id": "assessment-61445bd8a4d54ce69ce9cf580fd820c0",
-      "specificationId": "algebra-basic-001",
-      "specificationVersion": "1.0.0",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 2x \u002B 3 = 11",
-          "options": [
-            {
-              "id": "A",
-              "text": "4"
-            },
-            {
-              "id": "B",
-              "text": "3"
-            },
-            {
-              "id": "C",
-              "text": "5"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 5x - 10 = 0",
-          "options": [
-            {
-              "id": "A",
-              "text": "0"
-            },
-            {
-              "id": "B",
-              "text": "2"
-            },
-            {
-              "id": "C",
-              "text": "-2"
-            },
-            {
-              "id": "D",
-              "text": "10"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (x / 3) \u002B 4 = 7",
-          "options": [
-            {
-              "id": "A",
-              "text": "3"
-            },
-            {
-              "id": "B",
-              "text": "6"
-            },
-            {
-              "id": "C",
-              "text": "9"
-            },
-            {
-              "id": "D",
-              "text": "12"
-            }
-          ],
-          "correctOptionId": "C",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: 4(x - 2) = 2x \u002B 8",
-          "options": [
-            {
-              "id": "A",
-              "text": "4"
-            },
-            {
-              "id": "B",
-              "text": "-4"
-            },
-            {
-              "id": "C",
-              "text": "0"
-            },
-            {
-              "id": "D",
-              "text": "8"
-            }
-          ],
-          "correctOptionId": "D",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Solve single-variable linear equations",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Solve for x: (3/2)x - (1/3)(x \u002B 6) = 5",
-          "options": [
-            {
-              "id": "A",
-              "text": "6"
-            },
-            {
-              "id": "B",
-              "text": "3"
-            },
-            {
-              "id": "C",
-              "text": "9"
-            },
-            {
-              "id": "D",
-              "text": "-6"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-18T10:44:22.8318531+00:00"
-    },
-    {
-      "id": "assessment-c2aa660428474f54b18a1ebdcd43a428",
-      "specificationId": "gravity",
-      "specificationVersion": "1.0.0",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Gravitational Force",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Which factors determine the magnitude of the gravitational force between two objects?",
-          "options": [
-            {
-              "id": "A",
-              "text": "Only the masses of the objects"
-            },
-            {
-              "id": "B",
-              "text": "The masses of the objects and the distance between them"
-            },
-            {
-              "id": "C",
-              "text": "The masses, the distance between them, and their speeds"
-            },
-            {
-              "id": "D",
-              "text": "Only the distance between the objects"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Gravitational Force",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Near Earth\u0027s surface, what is the approximate acceleration due to gravity?",
-          "options": [
-            {
-              "id": "A",
-              "text": "9.8 m/s^2"
-            },
-            {
-              "id": "B",
-              "text": "9.8 km/s^2"
-            },
-            {
-              "id": "C",
-              "text": "0 m/s^2"
-            },
-            {
-              "id": "D",
-              "text": "98 m/s^2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Gravitational Force",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "If the distance between two masses is doubled, how does the gravitational force between them change (according to Newton\u0027s law of gravitation)?",
-          "options": [
-            {
-              "id": "A",
-              "text": "It is halved"
-            },
-            {
-              "id": "B",
-              "text": "It becomes one quarter as large"
-            },
-            {
-              "id": "C",
-              "text": "It doubles"
-            },
-            {
-              "id": "D",
-              "text": "It remains unchanged"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Gravitational Force",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "If the mass of one object is doubled and the mass of the other object is halved while their separation stays the same, how does the gravitational force between them change?",
-          "options": [
-            {
-              "id": "A",
-              "text": "The force doubles"
-            },
-            {
-              "id": "B",
-              "text": "The force is halved"
-            },
-            {
-              "id": "C",
-              "text": "The force remains the same"
-            },
-            {
-              "id": "D",
-              "text": "The force becomes four times larger"
-            }
-          ],
-          "correctOptionId": "C",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Gravitational Force",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Calculate the magnitude of the gravitational force between two 1 kg masses separated by 1 meter. (Use G = 6.674\u00D710^-11 N\u00B7m^2/kg^2.)",
-          "options": [
-            {
-              "id": "A",
-              "text": "6.674\u00D710^-11 N"
-            },
-            {
-              "id": "B",
-              "text": "6.674\u00D710^-10 N"
-            },
-            {
-              "id": "C",
-              "text": "6.674\u00D710^-12 N"
-            },
-            {
-              "id": "D",
-              "text": "6.674\u00D710^-9 N"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-18T10:45:28.6490815+00:00"
-    },
-    {
-      "id": "assessment-adbd9502024e49e5a568e7587fb3894d",
-      "specificationId": "polynomials",
-      "specificationVersion": "1.0.0",
-      "status": "generated",
-      "questions": [
-        {
-          "id": "q1",
-          "learningObjective": "Zeros of a polynomial",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "Given p(x) = x^2 - 5x \u002B 6, which of the following is a zero of p(x)?",
-          "options": [
-            {
-              "id": "A",
-              "text": "2"
-            },
-            {
-              "id": "B",
-              "text": "1"
-            },
-            {
-              "id": "C",
-              "text": "-2"
-            },
-            {
-              "id": "D",
-              "text": "6"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q2",
-          "learningObjective": "Zeros of a polynomial",
-          "difficulty": "easy",
-          "questionType": "multiple-choice",
-          "prompt": "For f(x) = (x - 1)^2(x \u002B 2), which x-value is a zero of multiplicity 2?",
-          "options": [
-            {
-              "id": "A",
-              "text": "1"
-            },
-            {
-              "id": "B",
-              "text": "-2"
-            },
-            {
-              "id": "C",
-              "text": "0"
-            },
-            {
-              "id": "D",
-              "text": "2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q3",
-          "learningObjective": "Zeros of a polynomial",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "Using the Rational Root Theorem, which of the following is a rational zero of 2x^3 - 3x^2 - 11x \u002B 6?",
-          "options": [
-            {
-              "id": "A",
-              "text": "3"
-            },
-            {
-              "id": "B",
-              "text": "-3"
-            },
-            {
-              "id": "C",
-              "text": "1/2"
-            },
-            {
-              "id": "D",
-              "text": "-1/2"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        },
-        {
-          "id": "q4",
-          "learningObjective": "Zeros of a polynomial",
-          "difficulty": "medium",
-          "questionType": "multiple-choice",
-          "prompt": "If a polynomial has real coefficients and 2 \u002B i is a zero, which of the following must also be a zero?",
-          "options": [
-            {
-              "id": "A",
-              "text": "-2 \u002B i"
-            },
-            {
-              "id": "B",
-              "text": "2 - i"
-            },
-            {
-              "id": "C",
-              "text": "-2 - i"
-            },
-            {
-              "id": "D",
-              "text": "i"
-            }
-          ],
-          "correctOptionId": "B",
-          "points": 2
-        },
-        {
-          "id": "q5",
-          "learningObjective": "Zeros of a polynomial",
-          "difficulty": "hard",
-          "questionType": "multiple-choice",
-          "prompt": "Find all zeros (including multiplicities) of p(x) = (x - 1)^2(x^2 \u002B 4).",
-          "options": [
-            {
-              "id": "A",
-              "text": "x = 1 (multiplicity 2), x = 2i, x = -2i"
-            },
-            {
-              "id": "B",
-              "text": "x = 1 (multiplicity 1), x = 2i, x = -2i"
-            },
-            {
-              "id": "C",
-              "text": "x = 1 (multiplicity 3), x = 2i"
-            },
-            {
-              "id": "D",
-              "text": "x = 1 (multiplicity 2), x = 4i, x = -4i"
-            }
-          ],
-          "correctOptionId": "A",
-          "points": 2
-        }
-      ],
-      "createdBy": "Demo Teacher",
-      "createdAt": "2026-08-18T11:27:43.3198644+00:00"
+      "createdAt": "2026-08-19T08:24:37.1790257+00:00"
     }
   ]
 }

@@ -23,6 +23,32 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdSpec.UnitTests", "tests\E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EdSpec.IntegrationTests", "tests\EdSpec.IntegrationTests\EdSpec.IntegrationTests.csproj", "{AAD84F66-79FC-42BB-A38A-75BF34437966}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "web", "web", "{DC3A1E65-8B15-4C27-9E9F-06326CB1FA7E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "edspec-ui", "edspec-ui", "{CB023EB4-2DD6-41E7-A49E-9834AF618464}"
+	ProjectSection(SolutionItems) = preProject
+		web\edspec-ui\index.html = web\edspec-ui\index.html
+		web\edspec-ui\package.json = web\edspec-ui\package.json
+		web\edspec-ui\package-lock.json = web\edspec-ui\package-lock.json
+		web\edspec-ui\tsconfig.app.json = web\edspec-ui\tsconfig.app.json
+		web\edspec-ui\tsconfig.json = web\edspec-ui\tsconfig.json
+		web\edspec-ui\tsconfig.node.json = web\edspec-ui\tsconfig.node.json
+		web\edspec-ui\vite.config.ts = web\edspec-ui\vite.config.ts
+		web\edspec-ui\src\App.tsx = web\edspec-ui\src\App.tsx
+		web\edspec-ui\src\assessment-library.css = web\edspec-ui\src\assessment-library.css
+		web\edspec-ui\src\dashboard-enhancements.css = web\edspec-ui\src\dashboard-enhancements.css
+		web\edspec-ui\src\dashboard.css = web\edspec-ui\src\dashboard.css
+		web\edspec-ui\src\generator.css = web\edspec-ui\src\generator.css
+		web\edspec-ui\src\index.css = web\edspec-ui\src\index.css
+		web\edspec-ui\src\layout-fixes.css = web\edspec-ui\src\layout-fixes.css
+		web\edspec-ui\src\main.tsx = web\edspec-ui\src\main.tsx
+		web\edspec-ui\src\specification-delete.css = web\edspec-ui\src\specification-delete.css
+		web\edspec-ui\src\specification-library.css = web\edspec-ui\src\specification-library.css
+		web\edspec-ui\src\toast.css = web\edspec-ui\src\toast.css
+		web\edspec-ui\src\ui-change-overrides.css = web\edspec-ui\src\ui-change-overrides.css
+		web\edspec-ui\src\vite-env.d.ts = web\edspec-ui\src\vite-env.d.ts
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -142,5 +168,6 @@ Global
 		{A074F450-FC27-47DF-8377-A218E4F2EF44} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
 		{BCCAC267-437B-45DD-A130-EB20273C5D23} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
 		{AAD84F66-79FC-42BB-A38A-75BF34437966} = {0AB3BF05-4346-4AA6-1389-037BE0695223}
+		{CB023EB4-2DD6-41E7-A49E-9834AF618464} = {DC3A1E65-8B15-4C27-9E9F-06326CB1FA7E}
 	EndGlobalSection
 EndGlobal
